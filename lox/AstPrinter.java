@@ -1,5 +1,13 @@
 package lox;
 
+//  Diagram of how the visitor pattern works:
+//    AstPrint().print(expression)
+//      -> expr.accept(this /* the AstPrint class with methods for each expr */)
+//         -> Expr.accept(visitor) /* each expr has an accept method */
+//            { return visitor.visit<Type>(this) }
+//            /* then the Expr accept method calls it's own method in the AstPrint class
+//               sending itself as an argument */
+
 class AstPrinter implements Expr.Visitor<String> {
   String print(Expr expr) {
     return expr.accept(this);
