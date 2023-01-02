@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct Node
 {
@@ -43,14 +44,26 @@ void LinkedList_append(LinkedList *ll, char* data) {
   ll->tail->prev = new;
 }
 
-int main(int argc, char* argv[]) {
+void LinkedList_delete(LinkedList *ll, char* data) {
+  Node *curr = ll->head->next;
 
-  LinkedList *ll = LinkedList_init();
-
-  for (int i = 1; i < argc; i++) {
-    LinkedList_append(ll, argv[i]);
+  while (strcmp(curr->data, data) != 0) {
+    if (curr->data == NULL) {
+      return;
+    }
+    curr = curr->next;
   }
 
+  Node *prev = curr->prev;
+  prev->next = curr->next;
+
+  Node *next = curr->next;
+  next->prev = curr->prev;
+
+  free(curr);
+}
+
+void LinkedList_printnext(LinkedList *ll) {
   printf("Printing front to back:\n");
   Node *curr = ll->head->next;
   while (curr->data != NULL) {
@@ -58,15 +71,37 @@ int main(int argc, char* argv[]) {
     printf("\n");
     curr = curr->next;
   }
+}
 
+
+void LinkedList_printprev(LinkedList *ll) {
   printf("\nPrinting back to front:\n");
-  curr = ll->tail->prev;
+  Node *curr = ll->tail->prev;
   while (curr->data != NULL) {
     printf(curr->data);
     printf("\n");
 
     curr = curr->prev;
   }
+}
+
+int main(int argc, char* argv[]) {
+
+  LinkedList *ll = LinkedList_init();
+
+  int i = 1;
+  while (strcmp(argv[i], ",") != 0) {
+    LinkedList_append(ll, argv[i]);
+    i++;
+  }
+
+  LinkedList_printnext(ll);
+  LinkedList_printprev(ll);
+
+  LinkedList_delete(ll, argv[i + 1]);
+
+  printf("\n\nDeleted element:\n");
+  LinkedList_printnext(ll);
 
   return 0;
 }
