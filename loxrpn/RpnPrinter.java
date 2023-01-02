@@ -30,10 +30,14 @@ class RpnPrinter implements Expr.Visitor<String> {
     StringBuilder builder = new StringBuilder();
 
     for (Expr expr : exprs) {
-      builder.append(" ");
-      builder.append(expr.accept(this));
+      builder.append(expr.accept(this)).append(' ');
     }
-    builder.append(")");
+
+    if (name != "group") {
+      builder.append(name);
+    } else {
+      builder.deleteCharAt(builder.length() - 1);
+    }
 
     return builder.toString();
   }
