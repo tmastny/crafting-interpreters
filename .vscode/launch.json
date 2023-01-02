@@ -8,6 +8,13 @@
       "type": "java",
       "name": "Launch AstPrinter",
       "request": "launch",
+      "mainClass": "loxrpn.AstPrinter",
+      "projectName": "crafting-intrepreters_90f3e396"
+    },
+    {
+      "type": "java",
+      "name": "Launch AstPrinter",
+      "request": "launch",
       "mainClass": "lox.AstPrinter",
       "projectName": "crafting-intrepreters_90f3e396"
     }
