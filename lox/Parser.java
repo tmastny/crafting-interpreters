@@ -2,8 +2,6 @@ package lox;
 
 import java.util.List;
 
-import javax.print.DocFlavor.STRING;
-
 import static lox.TokenType.*;
 
 class Parser {
