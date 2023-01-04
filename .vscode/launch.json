@@ -8,6 +8,13 @@
       "type": "java",
       "name": "Launch Lox",
       "request": "launch",
+      "mainClass": "loxstmt.Lox",
+      "projectName": "crafting-intrepreters_90f3e396"
+    },
+    {
+      "type": "java",
+      "name": "Launch Lox",
+      "request": "launch",
       "mainClass": "lox.Lox",
       "projectName": "crafting-intrepreters_90f3e396"
     },

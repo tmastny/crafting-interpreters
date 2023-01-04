@@ -1,28 +1,128 @@
-package loxcomma;
+package loxstmt;
 
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.LinkedTransferQueue;
 
-import static loxcomma.TokenType.*;
+import static loxstmt.TokenType.*;
 
 class Parser {
   private static class ParseError extends RuntimeException {}
   private final List<Token> tokens;
   private int current = 0;
+  private boolean quiet = false;
 
   Parser(List<Token> tokens) {
     this.tokens = tokens;
   }
 
-  Expr parse() {
+  List<Stmt> parse() {
+    List<Stmt> statements = new ArrayList<>();
+    while (!isAtEnd()) {
+      statements.add(declaration());
+    }
+
+    return statements;
+  }
+
+  // Is there a way to do this with a new Grammar?
+  // This is a literal implementation of the question:
+  // if statement, execute. If expression, execute and print.
+  // Because if something doesn't parse as a statement it's not.
+  List<Stmt> parseRepl() {
+    quiet = true;
+    List<Stmt> statements = parse();
+    quiet = false;
+    if (Lox.hadError) {
+      Lox.hadError = false;
+      current = 0;
+
+      try {
+        List<Stmt> lstmt = new ArrayList<>();
+        lstmt.add(new Stmt.Print(expression()));
+        return lstmt;
+      } catch (ParseError error) {
+        return null;
+      }
+    }
+
+    return statements;
+  }
+
+  private Expr expression() {
+    return assignment();
+  }
+
+  private Stmt declaration() {
     try {
-      return expression();
+      if (match(VAR)) return varDeclaration();
+
+      return statement();
     } catch (ParseError error) {
+      synchronize();
       return null;
     }
   }
 
-  private Expr expression() {
-    return equality();
+  private Stmt statement() {
+    if (match(PRINT)) return printStatement();
+    if (match(LEFT_BRACE)) return new Stmt.Block(block());
+
+    return expressionStatement();
+  }
+
+  private Stmt printStatement() {
+    Expr value = expression();
+    consume(SEMICOLON, "Expect ';' after value.");
+    return new Stmt.Print(value);
+  }
+
+  private Stmt varDeclaration() {
+    Token name = consume(IDENTIFIER, "Expect variable name.");
+
+    Expr initializer = null;
+    if (match(EQUAL)) {
+      initializer = expression();
+    }
+
+    consume(SEMICOLON, "Expect ';' after value.");
+    return new Stmt.Var(name, initializer);
+  }
+
+  private Stmt expressionStatement() {
+    Expr expr = expression();
+    consume(SEMICOLON, "Expect ';' after value.");
+    return new Stmt.Expression(expr);
+  }
+
+  private List<Stmt> block() {
+    List<Stmt> statements = new ArrayList<>();
+
+    while (!check(RIGHT_BRACE) && !isAtEnd()) {
+      statements.add(declaration());
+    }
+
+    consume(RIGHT_BRACE, "Expect '}' after block.");
+    return statements;
+  }
+
+  private Expr assignment() {
+    Expr expr = equality();
+
+    if (match(EQUAL)) {
+      Token equals = previous();
+      Expr value = assignment();
+
+      if (expr instanceof Expr.Variable) {
+        Token name = ((Expr.Variable)expr).name;
+        return new Expr.Assign(name, value);
+      }
+
+      error(equals, "Invalid assignment target.");
+    }
+
+    return expr;
   }
 
   private Expr equality() {
@@ -92,6 +192,10 @@ class Parser {
       return new Expr.Literal(previous().literal);
     }
 
+    if (match(IDENTIFIER)) {
+      return new Expr.Variable(previous());
+    }
+
     if (match(LEFT_PAREN)) {
       Expr expr = expression();
       consume(RIGHT_PAREN, "Expect ')' after expression.");
@@ -139,7 +243,7 @@ class Parser {
   }
 
   private ParseError error(Token token, String message) {
-    Lox.error(token, message);
+    Lox.error(token, message, quiet);
     return new ParseError();
   }
 
