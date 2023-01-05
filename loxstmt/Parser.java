@@ -30,6 +30,12 @@ class Parser {
   // This is a literal implementation of the question:
   // if statement, execute. If expression, execute and print.
   // Because if something doesn't parse as a statement it's not.
+
+  // It's hard to put it into a Grammar, because an expression
+  // *cannot* exist where-ever a declaration or statement does.
+
+  // Maybe it's a better idea not to reuse `parse` at all
+  // and create a new `parseRepl` that copies some of the same code?
   List<Stmt> parseRepl() {
     quiet = true;
     List<Stmt> statements = parse();
