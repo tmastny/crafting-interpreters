@@ -1,0 +1,12 @@
+var a = 13;
+
+for (var i = 0; i < 20; i = i + 1) {
+  if (i == a) {
+    print "Found a! Breaking";
+    break;
+  } else {
+    print i;
+  }
+}
+
+// var a = 13; for (var i = 0; i < 20; i = i + 1) { if (i == a) { print "Found a"; break;} else { print i;}}
