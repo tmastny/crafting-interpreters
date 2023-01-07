@@ -178,7 +178,7 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
 
     List<Object> arguments = new ArrayList<>();
     for (Expr argument : expr.arguments) {
-      arguments.add(argument);
+      arguments.add(evaluate(argument));
     }
 
     if (!(callee instanceof LoxCallable)) {
