@@ -54,6 +54,9 @@ public class Lox {
     if (hadError) return;
 
     Resolver resolver = new Resolver(interpreter);
+
+    if (hadError) return;
+
     resolver.resolve(statements);
 
     //System.out.println(new AstPrinter().print(expression));
