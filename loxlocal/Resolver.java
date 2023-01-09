@@ -9,7 +9,7 @@ class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
   private final Interpreter interpreter;
   private final Stack<Map<String, Boolean>> scopes = new Stack<>();
   private FunctionType currentFunction = FunctionType.NONE;
-  private HashMap<String, VariableInfo> usedVariables = new HashMap<>();
+  private HashMap<String, VariableInfo> variableTracker = new HashMap<>();
 
   Resolver(Interpreter interpreter) {
     this.interpreter = interpreter;
@@ -66,8 +66,8 @@ class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
     Map<String, Boolean> scope = scopes.peek();
 
     for (String name : scope.keySet()) {
-      if (!usedVariables.get(name).used) {
-        Lox.error(usedVariables.get(name).token, "Variable " + name + " is not used in the scope.");
+      if (!variableTracker.get(name).used) {
+        Lox.error(variableTracker.get(name).token, "Variable " + name + " is not used in the scope.");
       }
     }
 
@@ -159,7 +159,7 @@ class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
 
     Boolean value = false;
     if (scopes.isEmpty()) value = true;
-    usedVariables.put(stmt.name.lexeme, new VariableInfo(stmt.name, value));
+    variableTracker.put(stmt.name.lexeme, new VariableInfo(stmt.name, value));
 
     return null;
   }
@@ -226,7 +226,7 @@ class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
       Lox.error(expr.name, "Can't read local variable in its own initializer.");
     }
 
-    usedVariables.put(expr.name.lexeme, new VariableInfo(expr.name, true));
+    variableTracker.put(expr.name.lexeme, new VariableInfo(expr.name, true));
 
     resolveLocal(expr, expr.name);
     return null;
