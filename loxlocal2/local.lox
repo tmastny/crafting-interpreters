@@ -1,0 +1,10 @@
+var a;
+print "unused global okay";
+
+{
+  print "in local scope";
+  var b;
+  print "error before here";
+}
+
+// var a; print "unused global okay"; {print "in local scope"; var b; print "error before here";}
