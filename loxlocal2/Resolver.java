@@ -75,6 +75,7 @@ class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
   }
 
   private void declare(Token name) {
+    // TODO: give unique index in scope
     if (scopes.isEmpty()) return;
 
     Map<String, Boolean> scope = scopes.peek();
@@ -93,6 +94,7 @@ class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
   private void resolveLocal(Expr expr, Token name) {
     for (int i = scopes.size() - 1; i >= 0; i--) {
       if (scopes.get(i).containsKey(name.lexeme)) {
+        // TODO: also send unique index
         interpreter.resolve(expr, scopes.size() - 1 - i);
         return;
       }

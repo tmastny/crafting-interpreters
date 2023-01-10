@@ -143,6 +143,7 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
   }
 
   private Object lookUpVariable(Token name, Expr expr) {
+    // TODO: use unique index for variable
     Integer distance = locals.get(expr);
     if (distance != null) {
       return environment.getAt(distance, name.lexeme);
