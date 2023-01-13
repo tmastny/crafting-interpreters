@@ -105,6 +105,11 @@ class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
     declare(stmt.name);
     define(stmt.name);
 
+    for (Stmt.Function stat : stmt.statics) {
+      FunctionType declaration = FunctionType.METHOD;
+      resolveFunction(stat, declaration);
+    }
+
     beginScope();
     scopes.peek().put("this", true);
 
@@ -116,6 +121,8 @@ class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
 
       resolveFunction(method, declaration);
     }
+
+    // static metthods resolve
 
     endScope();
     currentClass = enclosingClass;

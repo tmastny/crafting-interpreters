@@ -3,16 +3,45 @@ package loxclass;
 import java.util.List;
 import java.util.Map;
 
-class LoxClass implements LoxCallable {
-  final String name;
+interface LoxSuper {
+  LoxFunction findMethod(String name);
+  String name();
+}
+
+class LoxMetaClass implements LoxSuper {
+  final LoxClass instance;
   private final Map<String, LoxFunction> methods;
 
-  LoxClass(String name, Map<String, LoxFunction> methods) {
+  LoxMetaClass(String name, Map<String, LoxFunction> methods, Map<String, LoxFunction> statics) {
+    this.instance = new LoxClass(name, methods, this);
+    this.methods = statics;
+  }
+
+  public LoxFunction findMethod(String name) {
+    if (methods.containsKey(name)) {
+      return methods.get(name);
+    }
+
+    return null;
+  }
+
+  public String name() {
+    return instance.name;
+  }
+}
+
+class LoxClass extends LoxInstance implements LoxCallable, LoxSuper {
+  private final Map<String, LoxFunction> methods;
+  final String name;
+
+  LoxClass(String name, Map<String, LoxFunction> methods, LoxSuper klass) {
+    super(klass);
     this.name = name;
     this.methods = methods;
   }
 
-  LoxFunction findMethod(String name) {
+  @Override
+  public LoxFunction findMethod(String name) {
     if (methods.containsKey(name)) {
       return methods.get(name);
     }
@@ -22,6 +51,11 @@ class LoxClass implements LoxCallable {
 
   @Override
   public String toString() {
+    return name;
+  }
+
+  @Override
+  public String name() {
     return name;
   }
 

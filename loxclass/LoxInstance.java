@@ -3,10 +3,10 @@ package loxclass;
 import java.util.HashMap;
 
 class LoxInstance {
-  private LoxClass klass;
+  private LoxSuper klass;
   private final HashMap<String, Object> fields = new HashMap<>();
 
-  LoxInstance(LoxClass klass) {
+  LoxInstance(LoxSuper klass) {
     this.klass = klass;
   }
 
@@ -27,6 +27,6 @@ class LoxInstance {
 
   @Override
   public String toString() {
-    return klass.name + " instance";
+    return klass.name() + " instance";
   }
 }
