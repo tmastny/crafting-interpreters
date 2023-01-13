@@ -24,6 +24,7 @@ public class GenerateAst {
       "Logical  : Expr left, Token operator, Expr right",
       "Set      : Expr object, Token name, Expr value",
       "Unary    : Token operator, Expr right",
+      "Super    : Token keyword, Token method",
       "This     : Token keyword",
       "Variable : Token name"
     ));
