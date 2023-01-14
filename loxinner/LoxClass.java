@@ -15,12 +15,16 @@ class LoxClass implements LoxCallable {
   }
 
   LoxFunction findMethod(String name) {
-    if (methods.containsKey(name)) {
-      return methods.get(name);
+    // swapped version of usual.
+    // first we try to find method on superclass. If it exists, we return that.
+    LoxFunction fn = null;
+    if (superclass != null) {
+      fn = superclass.findMethod(name);
+      if (fn != null) return fn;
     }
 
-    if (superclass != null) {
-      return superclass.findMethod(name);
+    if (methods.containsKey(name)) {
+      return methods.get(name);
     }
 
     return null;
