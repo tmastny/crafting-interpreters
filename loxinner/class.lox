@@ -1,0 +1,7 @@
+class Breakfast {
+  serve() {
+    return "eggs";
+  }
+}
+
+print Breakfast;
