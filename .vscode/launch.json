@@ -6,11 +6,11 @@
   "configurations": [
     {
       "type": "java",
-      "name": "Launch Lox",
+      "name": "Launch Lox Inner",
       "request": "launch",
       "mainClass": "loxinner.Lox",
       "projectName": "crafting-intrepreters_90f3e396",
-      "args": "loxinner/inner1.lox"
+      "args": "loxinner/inner2.lox"
     },
     {
       "type": "java",

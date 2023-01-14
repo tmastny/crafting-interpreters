@@ -17,9 +17,11 @@ class BostonCream < Doughnut {
   }
 }
 
-var bc = BostonCream()
-bc.makeCream();
-bc.cook()
+BostonCream().cook();
 // Fry until golden brown.
 // Pipe full of custard and coat with chocolate.
 // Place in a nice box.
+
+// 1. findMethod first finds method in superclass
+//    - But findMethod is called from existing instance
+//    - So if a supermethod is returned, we can bind inner to the _lower_ method!

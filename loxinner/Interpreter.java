@@ -181,7 +181,7 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     if (distance != null) {
       return environment.getAt(distance, name.lexeme);
     } else {
-      return globals.get(name);
+      return environment.get(name);
     }
   }
 

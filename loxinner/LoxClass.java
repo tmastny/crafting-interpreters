@@ -30,6 +30,15 @@ class LoxClass implements LoxCallable {
     return null;
   }
 
+  // doesn't quite work with chain of inheritances I think
+  LoxFunction findSubMethod(String name) {
+    if (methods.containsKey(name)) {
+      return methods.get(name);
+    }
+
+    return null;
+  }
+
   @Override
   public String toString() {
     return name;
