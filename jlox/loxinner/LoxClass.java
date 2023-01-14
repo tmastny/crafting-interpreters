@@ -30,7 +30,11 @@ class LoxClass implements LoxCallable {
     return null;
   }
 
-  // doesn't quite work with chain of inheritances I think
+  // doesn't quite work with chain of inheritances
+  // it needs to call into superclass like the original method
+  // BUT it needs to stop at the class containing the inner
+
+  // I wonder if a robust solution needs to mark methods as inner types?
   LoxFunction findSubMethod(String name) {
     if (methods.containsKey(name)) {
       return methods.get(name);
