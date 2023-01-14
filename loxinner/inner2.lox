@@ -12,12 +12,14 @@ class BostonCream < Doughnut {
     print "Pipe full of custard and coat with chocolate.";
   }
 
-  makeCream() {
+  whip() {
     print "Whip custard in mixer.";
   }
 }
 
-BostonCream().cook();
+var bc =  BostonCream();
+bc.whip();
+bc.cook();
 // Fry until golden brown.
 // Pipe full of custard and coat with chocolate.
 // Place in a nice box.
