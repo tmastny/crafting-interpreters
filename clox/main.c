@@ -18,7 +18,7 @@ int main(int argc, const char* argv[]) {
 
 
   float start1 = (float)clock() / CLOCKS_PER_SEC;
-  for (int i = 0; i < 10000; i++) {
+  for (int i = 0; i < 100000; i++) {
     writeChunk(&chunk, OP_NEGATE_1, 123);
   }
   writeChunk(&chunk, OP_RETURN, 123);
@@ -39,7 +39,8 @@ int main(int argc, const char* argv[]) {
 
 
   float start2 = (float)clock() / CLOCKS_PER_SEC;
-  for (int i = 0; i < 10000; i++) {
+  // tried at 1, 10_000, and 100_000
+  for (int i = 0; i < 100000; i++) {
     writeChunk(&chunk, OP_NEGATE_2, 123);
   }
   writeChunk(&chunk, OP_RETURN, 123);
