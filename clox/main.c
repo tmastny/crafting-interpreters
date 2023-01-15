@@ -1,3 +1,6 @@
+#include <time.h>
+#include <stdio.h>
+
 #include "common.h"
 #include "chunk.h"
 #include "debug.h"
@@ -13,23 +16,41 @@ int main(int argc, const char* argv[]) {
   writeChunk(&chunk, OP_CONSTANT, 123);
   writeChunk(&chunk, constant, 123);
 
-  constant = addConstant(&chunk, 3.4);
-  writeChunk(&chunk, OP_CONSTANT, 123);
-  writeChunk(&chunk, constant, 123);
 
-  writeChunk(&chunk, OP_ADD, 123);
-
-  constant = addConstant(&chunk, 5.6);
-  writeChunk(&chunk, OP_CONSTANT, 123);
-  writeChunk(&chunk, constant, 123);
-
-  writeChunk(&chunk, OP_DIVIDE, 123);
-  writeChunk(&chunk, OP_NEGATE, 123);
-
+  float start1 = (float)clock() / CLOCKS_PER_SEC;
+  for (int i = 0; i < 10000; i++) {
+    writeChunk(&chunk, OP_NEGATE_1, 123);
+  }
   writeChunk(&chunk, OP_RETURN, 123);
 
-  // disassembleChunk(&chunk, "test chunk");
+
   interpret(&chunk);
+  float end1 = (float)clock() / CLOCKS_PER_SEC;
+  printf("Time elapsed for pushpop: %f\n", end1 - start1);
+  freeVM();
+  freeChunk(&chunk);
+  initVM();
+  initChunk(&chunk);
+
+
+  constant = addConstant(&chunk, 1.2);
+  writeChunk(&chunk, OP_CONSTANT, 123);
+  writeChunk(&chunk, constant, 123);
+
+
+  float start2 = (float)clock() / CLOCKS_PER_SEC;
+  for (int i = 0; i < 10000; i++) {
+    writeChunk(&chunk, OP_NEGATE_2, 123);
+  }
+  writeChunk(&chunk, OP_RETURN, 123);
+
+  interpret(&chunk);
+  float end2 = (float)clock() / CLOCKS_PER_SEC;
+  printf("Time elapsed for inplace: %f\n", end2 - start2);
+
+
+
+
   freeVM();
   freeChunk(&chunk);
   return 0;
