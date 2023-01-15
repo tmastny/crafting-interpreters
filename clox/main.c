@@ -16,10 +16,11 @@ int main(int argc, const char* argv[]) {
   writeChunk(&chunk, OP_RETURN, 10);
 
   // // test line encoding
-  // printf("%i\n", chunk.count);
-  // for (int i = 0; i < chunk.linecap; i++) {
-  //   printf("line: %i, num: %i\n", i, chunk.lines[i]);
-  // }
+  printf("%i\n", chunk.count);
+  for (int i = 0; i < chunk.linecap; i++) {
+    printf("line: %i, num: %i\n", i, chunk.lines[i]);
+  }
+  printf("-----\n");
 
   disassembleChunk(&chunk, "test chunk");
   freeChunk(&chunk);
