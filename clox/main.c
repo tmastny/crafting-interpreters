@@ -9,6 +9,7 @@ int main(int argc, const char* argv[]) {
   Chunk chunk;
   initChunk(&chunk);
 
+  printf("(1.2 + 3.4) / 5.6\n")
   int constant = addConstant(&chunk, 1.2);
   writeChunk(&chunk, OP_CONSTANT, 123);
   writeChunk(&chunk, constant, 123);
