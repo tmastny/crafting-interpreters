@@ -3,6 +3,8 @@
     "*.sql": "jinja-sql",
     "stddef.h": "c",
     "stdint.h": "c",
-    "value.h": "c"
+    "value.h": "c",
+    "stdlib.h": "c",
+    "common.h": "c"
   }
 }
