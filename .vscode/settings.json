@@ -5,6 +5,8 @@
     "stdint.h": "c",
     "value.h": "c",
     "stdlib.h": "c",
-    "common.h": "c"
+    "common.h": "c",
+    "__locale": "c",
+    "locale": "c"
   }
 }
