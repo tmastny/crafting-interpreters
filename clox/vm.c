@@ -46,6 +46,10 @@ static Value peek(int distance) {
   return vm.stackTop[-1 - distance];
 }
 
+static bool isFalsey(Value value) {
+  return IS_NIL(value) || (IS_BOOL(value) && !AS_BOOL(value));
+}
+
 static InterpretResult run() {
 #define READ_BYTE() (*vm.ip++)
 #define READ_CONSTANT() (vm.chunk->constants.values[READ_BYTE()])
@@ -94,11 +98,8 @@ static InterpretResult run() {
         push(NUMBER_VAL(-AS_NUMBER(pop())));
         break;
       case OP_NOT:
-        if (!IS_BOOL(peek(0))) {
-          runtimeError("Operand must be boolean.");
-          return INTERPRET_RUNTIME_ERROR;
-        }
-        push(BOOL_VAL(!AS_BOOL(pop())));
+        push(BOOL_VAL(isFalsey(pop())));
+        break;
       case OP_RETURN:
         printValue(pop());
         printf("\n");
