@@ -20,6 +20,7 @@ typedef struct {
 typedef enum {
   PREC_NONE,
   PREC_ASSIGNMENT,  // =
+  PERC_TERNARY,     // ? :
   PREC_OR,          // or
   PREC_AND,         // and
   PREC_EQUALITY,    // == !=
@@ -169,6 +170,12 @@ static void unary() {
   }
 }
 
+static void ternary() {
+  expression();
+  consume(TOKEN_COLON, "Missing colon.");
+  expression();
+}
+
 ParseRule rules[] = {
   [TOKEN_LEFT_PAREN]    = {grouping, NULL,   PREC_NONE},
   [TOKEN_RIGHT_PAREN]   = {NULL,     NULL,   PREC_NONE},
@@ -210,6 +217,8 @@ ParseRule rules[] = {
   [TOKEN_WHILE]         = {NULL,     NULL,   PREC_NONE},
   [TOKEN_ERROR]         = {NULL,     NULL,   PREC_NONE},
   [TOKEN_EOF]           = {NULL,     NULL,   PREC_NONE},
+  [TOKEN_QMARK]         = {NULL,     ternary,PERC_TERNARY},
+  [TOKEN_COLON]         = {NULL,     NULL,   PREC_NONE}
 };
 
 static void parsePrecedence(Precedence precedence) {
