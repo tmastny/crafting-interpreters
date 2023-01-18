@@ -97,6 +97,9 @@ static InterpretResult run() {
         }
         push(NUMBER_VAL(-AS_NUMBER(pop())));
         break;
+      case OP_EQUAL:   BINARY_OP(BOOL_VAL, ==); break;
+      case OP_GREATER: BINARY_OP(BOOL_VAL, >); break;
+      case OP_LESS:    BINARY_OP(BOOL_VAL, <); break;
       case OP_NOT:
         push(BOOL_VAL(isFalsey(pop())));
         break;
