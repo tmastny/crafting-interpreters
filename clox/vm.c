@@ -93,6 +93,12 @@ static InterpretResult run() {
         }
         push(NUMBER_VAL(-AS_NUMBER(pop())));
         break;
+      case OP_NOT:
+        if (!IS_BOOL(peek(0))) {
+          runtimeError("Operand must be boolean.");
+          return INTERPRET_RUNTIME_ERROR;
+        }
+        push(BOOL_VAL(!AS_BOOL(pop())));
       case OP_RETURN:
         printValue(pop());
         printf("\n");
