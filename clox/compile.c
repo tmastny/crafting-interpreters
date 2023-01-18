@@ -177,6 +177,15 @@ static void ternary() {
   expression();
   consume(TOKEN_COLON, "Missing colon.");
   expression();
+  /* Possible vm implementation
+    - Write OP_TERNARY
+    - OP_TERNARY in vm:
+      - previous expression calls put conditional and then, else
+      on the stack
+
+      - pop all three. If last is true, put then back on stack.
+      Else put else on stack
+  */
 }
 
 ParseRule rules[] = {
