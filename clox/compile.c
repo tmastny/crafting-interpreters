@@ -170,6 +170,9 @@ static void unary() {
   }
 }
 
+// Example to see that it parsers precedence correctly:
+//  1 ? 1 + 2: -3
+//  1 * 4 ? 1 + 2 / 3 : 4
 static void ternary() {
   expression();
   consume(TOKEN_COLON, "Missing colon.");
@@ -219,6 +222,9 @@ ParseRule rules[] = {
   [TOKEN_EOF]           = {NULL,     NULL,   PREC_NONE},
   [TOKEN_QMARK]         = {NULL,     ternary,PERC_TERNARY},
   [TOKEN_COLON]         = {NULL,     NULL,   PREC_NONE}
+  //                                         ^ need to have this none-precedence so
+  //                                           `expression` call terminates in the
+  //                                           ternary function
 };
 
 static void parsePrecedence(Precedence precedence) {
