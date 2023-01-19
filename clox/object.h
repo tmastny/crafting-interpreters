@@ -22,6 +22,7 @@ struct Obj {
 
 struct ObjString {
   Obj obj;
+  bool freeable;
   int length;
   char* chars;
 };
