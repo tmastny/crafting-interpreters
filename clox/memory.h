@@ -2,6 +2,7 @@
 #define clox_memory_h
 
 #include "common.h"
+#include "vm.h"
 
 #define ALLOCATE(type, count) \
     (type*)reallocate(NULL, 0, sizeof(type) * (count))
@@ -17,5 +18,8 @@
     reallocate(pointer, sizeof(type) * (oldCount), 0)
 
 void* reallocate(void* pointer, size_t oldSize, size_t newSize);
+void freeObjects();
+
+extern VM vm;
 
 #endif
