@@ -23,10 +23,10 @@ struct Obj {
 struct ObjString {
   Obj obj;
   int length;
-  char* chars;
+  char chars[]; // flexible **array** member, not pointer
 };
 
-ObjString* takeString(char* chars, int length);
+ObjString* takeString(int length);
 ObjString* copyString(const char* chars, int length);
 void printObject(Value value);
 

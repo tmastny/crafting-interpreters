@@ -18,8 +18,7 @@ static void freeObject(Obj* object) {
   switch (object->type) {
     case OBJ_STRING: {
       ObjString* string = (ObjString*)object;
-      FREE_ARRAY(char, string->chars, string->length + 1);
-      FREE(ObjString, object);
+      free(string); // one free for one malloc: https://stackoverflow.com/questions/13391617/freeing-dynamically-allocated-struct-with-flexible-array-member
       break;
     }
   }
