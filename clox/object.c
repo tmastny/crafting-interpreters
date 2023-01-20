@@ -24,7 +24,10 @@ static ObjString* allocateString(char* chars, int length, uint32_t hash) {
   string->length = length;
   string->chars = chars;
   string->hash = hash;
-  tableSet(&vm.strings, string, NIV_VAL);
+  // commenting out because I want to measure tableSet, but I
+  // need to allocate a string first. I want to measure set speed
+  // without string interning.
+  // tableSet(&vm.strings, string, NIV_VAL);
   return string;
 }
 
