@@ -48,3 +48,16 @@ bool valuesEqual(Value a, Value b) {
     default:         return false; // Unreachable
   }
 }
+
+static uint32_t valueHash(Value value) {
+  switch (value.type) {
+    case VAL_NUMBER: return AS_NUMBER(value);
+    case VAL_BOOL: return AS_BOOL(value);
+    case VAL_NIL: return AS_NUMBER(value);
+    default: return; // unreachable
+  }
+}
+
+ObjString* valueKey(Value value) {
+  return allocateString(NULL, 0, valueHash(value));
+}
