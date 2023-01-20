@@ -29,7 +29,7 @@ struct ObjString {
 
 ObjString* takeString(char* chars, int length);
 ObjString* copyString(const char* chars, int length);
-ObjString* allocateString(char* chars, int length, uint32_t hash);
+ObjString* allocateString(char* chars, int length, uint32_t hash, bool isString);
 void printObject(Value value);
 
 static inline bool isObjType(Value value, ObjType type) {

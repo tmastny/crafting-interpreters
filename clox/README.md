@@ -18,6 +18,37 @@ Bool
     - if we hash `(double)1`, it will be a different value than `(int)true`,
       because the byte structure of double is different
 
+Printing underlying hex value in C:
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+int main() {
+    double d = 0;
+    bool f = false;
+    printf("double: %x\n", d);
+    printf("bool  : %x\n", f);
+    printf("nil  : %x\n", NULL);
+    printf("sizeof(double): %x\n", sizeof(double));
+    printf("sizeof(bool): %x\n", sizeof(bool));
+    printf("sizeof(NULL): %x\n", sizeof(int));
+    return 0;
+}
+/*
+double: 104cae08
+bool  : 0
+nil  : 0
+sizeof(double): 8
+sizeof(bool): 1
+sizeof(NULL): 4
+*/
+```
+This would work, BUT we are technically storing `VAL_NIL` as `(double)0`:
+```c
+#define NIV_VAL           ((Value){VAL_NIL, {.number = 0}})
+```
+Oh, but we can instead hash `VAL_NIL` which is an integer enum.
+
 ## uint32_t as key
 
 If I change the interface to directly take the `uint32_t` has, how can I still

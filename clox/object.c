@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
 #include "memory.h"
 #include "object.h"
@@ -19,12 +20,12 @@ static Obj* allocateObject(size_t size, ObjType type) {
   return object;
 }
 
-ObjString* allocateString(char* chars, int length, uint32_t hash) {
+ObjString* allocateString(char* chars, int length, uint32_t hash, bool isString) {
   ObjString* string = ALLOCATE_OBJ(ObjString, OBJ_STRING);
   string->length = length;
   string->chars = chars;
   string->hash = hash;
-  tableSet(&vm.strings, string, NIV_VAL);
+  if (isString) tableSet(&vm.strings, string, NIV_VAL);
   return string;
 }
 
@@ -47,7 +48,7 @@ ObjString* takeString(char* chars, int length) {
     return interned;
   }
 
-  return allocateString(chars, length, hash);
+  return allocateString(chars, length, hash, true);
 }
 
 ObjString* copyString(const char* chars, int length) {
@@ -58,7 +59,7 @@ ObjString* copyString(const char* chars, int length) {
   char* heapChars = ALLOCATE(char, length + 1);
   memcpy(heapChars, chars, length);
   heapChars[length] = '\0';
-  return allocateString(heapChars, length, hash);
+  return allocateString(heapChars, length, hash, true);
 }
 
 void printObject(Value value) {

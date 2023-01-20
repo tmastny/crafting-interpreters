@@ -49,15 +49,26 @@ bool valuesEqual(Value a, Value b) {
   }
 }
 
+static uint32_t hashByte(uint8_t* p, size_t length) {
+  uint32_t hash = 2166136261u;
+  for (int i = 0; i < length; i++) {
+    hash ^= (uint8_t)(*(p + i));
+    hash *= 16777619;
+  }
+  return hash;
+}
+
 static uint32_t valueHash(Value value) {
   switch (value.type) {
-    case VAL_NUMBER: return AS_NUMBER(value);
-    case VAL_BOOL: return AS_BOOL(value);
-    case VAL_NIL: return AS_NUMBER(value);
+    case VAL_NUMBER: return hashByte((uint8_t*)&AS_NUMBER(value), sizeof(double));
+    case VAL_BOOL: return hashByte((uint8_t*)&AS_BOOL(value), sizeof(bool));
+    case VAL_NIL:
+      int nil = 0;
+      return hashByte((uint8_t*)&nil, sizeof(double));
     default: return; // unreachable
   }
 }
 
 ObjString* valueKey(Value value) {
-  return allocateString(NULL, 0, valueHash(value));
+  return allocateString(NULL, 0, valueHash(value), false);
 }
