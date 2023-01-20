@@ -64,7 +64,7 @@ static uint32_t valueHash(Value value) {
     case VAL_BOOL: return hashByte((uint8_t*)&AS_BOOL(value), sizeof(bool));
     case VAL_NIL:
       int nil = 0;
-      return hashByte((uint8_t*)&nil, sizeof(double));
+      return hashByte((uint8_t*)&nil, sizeof(int));
     default: return; // unreachable
   }
 }
