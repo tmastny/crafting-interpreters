@@ -62,10 +62,11 @@ static uint32_t valueHash(Value value) {
   switch (value.type) {
     case VAL_NUMBER: return hashByte((uint8_t*)&AS_NUMBER(value), sizeof(double));
     case VAL_BOOL: return hashByte((uint8_t*)&AS_BOOL(value), sizeof(bool));
-    case VAL_NIL:
+    case VAL_NIL: {
       int nil = 0;
       return hashByte((uint8_t*)&nil, sizeof(int));
-    default: return; // unreachable
+    }
+    default: return 0; // unreachable
   }
 }
 
