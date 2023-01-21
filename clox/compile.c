@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "chunk.h"
 #include "common.h"
@@ -148,6 +149,22 @@ static uint8_t identifierConstant(Token* name) {
   return makeConstant(OBJ_VAL(copyString(name->start, name->length)));
 }
 
+static uint8_t findIdentifierConstant(Token* name) {
+  int count = currentChunk()->constants.count;
+  for (int i = 0; i < count; i++) {
+    Value value = currentChunk()->constants.values[i];
+    if (IS_OBJ(value) && memcmp(AS_CSTRING(value), name->start, name->length) == 0) {
+      return i;
+    }
+  }
+
+  // variable not found. Create new constant.
+  // NOT a compile time error, because something like this is okay:
+  // `fun t() print a`
+  // `a` may be defined later as a global variable
+  return identifierConstant(name);
+}
+
 static uint8_t parseVariable(const char* errorMessage) {
   consume(TOKEN_IDENTIFIER, errorMessage);
   return identifierConstant(&parser.previous);
@@ -201,7 +218,7 @@ static void string(bool canAssign) {
 }
 
 static void namedVariable(Token name, bool canAssign) {
-  uint8_t arg = identifierConstant(&name);
+  uint8_t arg = findIdentifierConstant(&name);
 
   if (canAssign && match(TOKEN_EQUAL)) {
     expression();
