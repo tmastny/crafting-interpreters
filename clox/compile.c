@@ -301,7 +301,7 @@ static void string(bool canAssign) {
 
 static void namedVariable(Token name, bool canAssign) {
   uint8_t getOp, setOp;
-  bool* assignable;
+  bool* assignable = true;
   int arg = resolveLocal(current, &name, assignable);
   if (arg != -1) {
     getOp = OP_GET_LOCAL;
