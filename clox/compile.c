@@ -117,10 +117,17 @@ static void emitReturn() {
 }
 
 static uint8_t makeConstant(Value value) {
+  // note: still duplicates non-string constants
+  printf("---> in makeConstant. Constants: ");
+  for (int i = 0; i < currentChunk()->constants.count; i++) {
+    printValue(currentChunk()->constants.values[i]);
+    printf(", ");
+  }
+  printf("\n");
+
   int constant = addConstant(currentChunk(), value);
   if (constant > UINT8_MAX) {
-    error("Too many constants in one chunk.");
-    return 0;
+    error("Too many constants in one chunk.");    return 0;
   }
 
   return (uint8_t)constant;
