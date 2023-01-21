@@ -43,6 +43,7 @@ typedef struct {
 typedef struct {
   Token name;
   int depth;
+  bool assignable;
 } Local;
 
 typedef struct {
@@ -449,6 +450,7 @@ static void synchronize() {
       case TOKEN_CLASS:
       case TOKEN_FUN:
       case TOKEN_VAR:
+      case TOKEN_LET:
       case TOKEN_FOR:
       case TOKEN_IF:
       case TOKEN_WHILE:
@@ -464,7 +466,7 @@ static void synchronize() {
 }
 
 static void declaration() {
-  if (match(TOKEN_VAR)) {
+  if (match(TOKEN_VAR) || match(TOKEN_LET)) {
     varDeclaration();
   } else {
     statement();
