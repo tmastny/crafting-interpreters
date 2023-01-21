@@ -157,6 +157,8 @@ static uint8_t identifierConstant(Token* name) {
 }
 
 static uint8_t findIdentifierConstant(Token* name) {
+  // this is a compile time trade-off, because retreiving the constant Value
+  // at runtime is still an index array lookup.
   int count = currentChunk()->constants.count;
   for (int i = 0; i < count; i++) {
     Value value = currentChunk()->constants.values[i];
