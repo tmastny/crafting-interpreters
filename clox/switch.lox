@@ -1,0 +1,11 @@
+var name = "Tim";
+
+switch (name) {
+  case "Tim": print "Hello Mr. Tim.";
+  case "Michaela": print "Hello Mrs. Michaela.";
+  case "Chunks": {
+    var pet = " cat ";
+    print "Hello" + pet + "Chunks!";
+  }
+  default: print "Hello!";
+}
