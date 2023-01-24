@@ -1,4 +1,4 @@
-var name = "Tim";
+var name = "Michaela";
 
 switch (name) {
   case "Tim": print "Hello Mr. Tim.";

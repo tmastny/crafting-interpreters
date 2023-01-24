@@ -154,6 +154,11 @@ static InterpretResult run() {
         push(BOOL_VAL(valuesEqual(a, b)));
         break;
       }
+      case OP_EQUAL_TO_TOP: {
+        Value a = pop();
+        push(BOOL_VAL(valuesEqual(a, peek(0))));
+        break;
+      }
       case OP_GREATER: BINARY_OP(BOOL_VAL, >); break;
       case OP_LESS:    BINARY_OP(BOOL_VAL, <); break;
       case OP_ADD: {
@@ -195,6 +200,11 @@ static InterpretResult run() {
       case OP_JUMP_IF_FALSE: {
         uint16_t offset = READ_SHORT();
         if (isFalsey(peek(0))) vm.ip += offset;
+        break;
+      }
+      case OP_JUMP_IF_FALSE_WITH_POP: {
+        uint16_t offset = READ_SHORT();
+        if (isFalsey(pop())) vm.ip += offset;
         break;
       }
       case OP_LOOP: {

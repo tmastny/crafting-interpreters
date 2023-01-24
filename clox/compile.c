@@ -586,8 +586,8 @@ static void switchStatement() {
     if (cases >= 256) error("Lox only supports 256 case statements.");
 
     expression();
-    emitByte(OP_EQUAL);
-    int notMatchCase = emitJump(OP_JUMP_IF_FALSE);
+    emitByte(OP_EQUAL_TO_TOP);
+    int notMatchCase = emitJump(OP_JUMP_IF_FALSE_WITH_POP);
 
     consume(TOKEN_COLON, "Expect ':' after case expression.");
     declaration();
