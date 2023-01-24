@@ -587,7 +587,7 @@ static void switchStatement() {
 
     expression();
     emitByte(OP_EQUAL_TO_TOP);
-    int notMatchCase = emitJump(OP_JUMP_IF_FALSE_WITH_POP); // jump to next caseqq
+    int notMatchCase = emitJump(OP_JUMP_IF_FALSE_WITH_POP); // jump to next case
 
     consume(TOKEN_COLON, "Expect ':' after case expression.");
     declaration();
