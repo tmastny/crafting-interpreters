@@ -580,15 +580,29 @@ static void switchStatement() {
 
   consume(TOKEN_LEFT_BRACE, "Expect '{' after condition.");
 
-  while(match(TOKEN_CASE)) {
+  int jumps[256];
+  int cases = 0;
+  while (match(TOKEN_CASE)) {
+    if (cases >= 256) error("Lox only supports 256 case statements.");
+
     expression();
+    emitByte(OP_EQUAL);
+    int notMatchCase = emitJump(OP_JUMP_IF_FALSE);
+
     consume(TOKEN_COLON, "Expect ':' after case expression.");
     declaration();
+
+    jumps[cases++] = emitJump(OP_JUMP);
+    patchJump(notMatchCase);
   }
 
   if (match(TOKEN_DEFAULT)) {
     consume(TOKEN_COLON, "Expect ':' after default.");
     declaration();
+  }
+
+  for (int i = 0; i < cases; i++) {
+    patchJump(jumps[i]);
   }
 
   consume(TOKEN_RIGHT_BRACE, "Expect '}' switch statement.");
