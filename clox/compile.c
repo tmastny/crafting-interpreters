@@ -590,6 +590,8 @@ static void switchStatement() {
     consume(TOKEN_COLON, "Expect ':' after default.");
     declaration();
   }
+
+  consume(TOKEN_RIGHT_BRACE, "Expect '}' switch statement.");
 }
 
 static void synchronize() {
