@@ -605,6 +605,7 @@ static void switchStatement() {
     patchJump(jumps[i]);
   }
 
+  emitByte(OP_POP);
   consume(TOKEN_RIGHT_BRACE, "Expect '}' switch statement.");
 }
 
