@@ -573,6 +573,25 @@ static void whileStatement() {
   emitByte(OP_POP);
 }
 
+static void switchStatement() {
+  consume(TOKEN_LEFT_PAREN, "Expect '(' after 'switch'.");
+  expression();
+  consume(TOKEN_RIGHT_PAREN, "Expect ')' after condition.");
+
+  consume(TOKEN_LEFT_BRACE, "Expect '{' after condition.");
+
+  while(match(TOKEN_CASE)) {
+    expression();
+    consume(TOKEN_COLON, "Expect ':' after case expression.");
+    declaration();
+  }
+
+  if (match(TOKEN_DEFAULT)) {
+    consume(TOKEN_COLON, "Expect ':' after default.");
+    declaration();
+  }
+}
+
 static void synchronize() {
   parser.panicMode = false;
 
@@ -611,6 +630,8 @@ static void statement() {
     printStatement();
   } else if (match(TOKEN_FOR)) {
     forStatement();
+  } else if (match(TOKEN_SWITCH)) {
+    switchStatement();
   } else if (match(TOKEN_IF)) {
     ifStatement();
   } else if (match(TOKEN_WHILE)) {
