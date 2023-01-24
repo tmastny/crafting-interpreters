@@ -1,4 +1,4 @@
-var name = "Michaela";
+var name = "Des";
 
 switch (name) {
   case "Tim": print "Hello Mr. Tim.";
@@ -7,5 +7,5 @@ switch (name) {
     var pet = " cat ";
     print "Hello" + pet + "Chunks!";
   }
-  default: print "Hello!";
+  default: print "Hello " + name + "!";
 }
