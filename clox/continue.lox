@@ -1,0 +1,34 @@
+// jlox used exceptions to unwind the call stack
+// to the outer for loop, but we don't have that
+// feature in C.
+
+// If we encounter `continue`, we could `emitByte(OP_LOOP)`.
+// Then at the end of the for loop, go back through
+// all instructions and fill in the OP_LOOPs for
+// the for loop?
+// - this would be well-defined, because we could
+//   save the current instruction at the start of the
+//   for loop.
+//
+// - *Problem 1*: our implementation emits two `OP_LOOP`s:
+//   one to jump from `increment` to `start` and one
+//   to jump from `end` to `increment`. So we couldn't
+//   fill in _any_ `OP_LOOP`s we see to jump to `increment`.
+//
+//   - But! Our current solution _already_ patches those jumps.
+//     So we would just need to go through the bytecode and check
+//     patch any *empty* `OP_LOOP`s to the start of increment.
+//
+// - *Problem 2*: it's hard to specifically jump back to
+//   increment, because it's optional. The `incrementStart` variable
+//   is only defined within the if statement. I could use the -1 trick
+//   to check if it was assigned and if so, go there.
+
+for (var i = 0; i < 5; i = i + 1) {
+  for (var j = 0; j < 10; j = j + 1) {
+    // continue needs to jump to the increment
+    // clause of the _inner_ for loop only
+    //if (j > 5) continue;
+    print "i: " + i + ", j: " + j;
+  }
+}
