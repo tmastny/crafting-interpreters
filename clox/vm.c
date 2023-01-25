@@ -93,7 +93,7 @@ static bool callValue(Value callee, int argCount) {
         break; // Non-callable object tpye
     }
   }
-  runtimeError("can only call functions and classes.");
+  runtimeError("Can only call functions and classes.");
   return false;
 }
 
