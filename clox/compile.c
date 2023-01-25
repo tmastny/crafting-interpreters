@@ -527,6 +527,7 @@ static void forStatement() {
   }
 
   current->loopStart[current->loopCount++] = loopStart;
+  if (current->loopCount >= UINT8_COUNT) error("Too many nested loops.");
 
   statement();
   emitLoop(loopStart);
