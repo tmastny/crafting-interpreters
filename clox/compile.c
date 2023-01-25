@@ -46,8 +46,8 @@ typedef struct {
 } Local;
 
 typedef struct {
-  int continues[UINT8_COUNT];
-  int continueCount;
+  int loopStart[UINT8_COUNT];
+  int loopCount;
   Local locals[UINT8_COUNT];
   int localCount;
   int scopeDepth;
@@ -173,6 +173,7 @@ static void patchJump(int offset) {
 }
 
 static void initCompiler(Compiler* compiler) {
+  compiler->loopCount = 0;
   compiler->localCount = 0;
   compiler->scopeDepth = 0;
   current = compiler;
@@ -525,6 +526,8 @@ static void forStatement() {
     patchJump(bodyJump);
   }
 
+  current->loopStart[current->loopCount++] = loopStart;
+
   statement();
   emitLoop(loopStart);
 
@@ -533,7 +536,13 @@ static void forStatement() {
     emitByte(OP_POP);
   }
 
+  current->loopCount--;
   endScope();
+}
+
+static void continueStatement() {
+  emitLoop(current->loopStart[current->loopCount - 1]);
+  consume(TOKEN_SEMICOLON, "Expect ';' after 'continue'.");
 }
 
 static void ifStatement() {
@@ -617,6 +626,8 @@ static void statement() {
     ifStatement();
   } else if (match(TOKEN_WHILE)) {
     whileStatement();
+  } else if (match(TOKEN_CONTINUE)) {
+    continueStatement();
   } else if (match(TOKEN_LEFT_BRACE)) {
     beginScope();
     block();
