@@ -24,8 +24,17 @@
 //   is only defined within the if statement. I could use the -1 trick
 //   to check if it was assigned and if so, go there.
 
+// for (var i = 0; i < 5; i = i + 1) {
+//   for (var j = 10; j < 50; j = j + 10) {
+//     if (i > 2) continue;
+//     print i + j;
+//   }
+// }
+
 for (var i = 0; i < 5; i = i + 1) {
-  for (var j = 10; j < 50; j = j + 10) {
+  var j = 0;
+  while (j < 50) {
+    j = j + 10;
     if (i > 2) continue;
     print i + j;
   }

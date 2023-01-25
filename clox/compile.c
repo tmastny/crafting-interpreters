@@ -578,11 +578,16 @@ static void whileStatement() {
 
   int exitJump = emitJump(OP_JUMP_IF_FALSE);
   emitByte(OP_POP);
+
+  current->loopStart[current->loopCount++] = loopStart;
+
   statement();
   emitLoop(loopStart);
 
   patchJump(exitJump);
   emitByte(OP_POP);
+
+  current->loopCount--;
 }
 
 static void synchronize() {
