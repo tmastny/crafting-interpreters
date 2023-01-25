@@ -28,7 +28,10 @@ for (var i = 0; i < 5; i = i + 1) {
   for (var j = 0; j < 10; j = j + 1) {
     // continue needs to jump to the increment
     // clause of the _inner_ for loop only
-    //if (j > 5) continue;
-    print "i: " + i + ", j: " + j;
+    if (j > 5) continue;
+    print "i:";
+    print i;
+    print "j:";
+    print j;
   }
 }
