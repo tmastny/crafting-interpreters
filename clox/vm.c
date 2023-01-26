@@ -83,7 +83,7 @@ static Value peek(int distance) {
 
 static bool call(ObjFunction* function, int argCount) {
   if (argCount != function->arity) {
-    runtimeError("Expected %d arguments but go %d", function->arity, argCount);
+    runtimeError("Expected %d arguments but got %d", function->arity, argCount);
     return false;
   }
 
@@ -106,7 +106,7 @@ static bool callValue(Value callee, int argCount) {
         return call(AS_FUNCTION(callee), argCount);
       case OBJ_NATIVE: {
         if (NATIVE_ARITY(callee) != argCount) {
-          runtimeError("Expected %d arguments but go %d", NATIVE_ARITY(callee), argCount);
+          runtimeError("Expected %d arguments but got %d", NATIVE_ARITY(callee), argCount);
           return false;
         }
         NativeFn native = AS_NATIVE(callee);
