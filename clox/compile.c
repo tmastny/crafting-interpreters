@@ -638,6 +638,22 @@ static void printStatement() {
 }
 
 static void returnStatement() {
+  /*
+  Every function is compiled with an `return nil;`
+  at the end of its block.
+  But if the block has a `returnStatement`, then
+  the VM will encounter that `OP_RETURN` first, execute
+  it, and the other will be ignored. For example:
+
+  `return`, a new OP
+  0000    1 OP_GET_LOCAL        1
+  0002    | OP_GET_LOCAL        2
+  0004    | OP_MULTIPLY
+  0005    | OP_RETURN
+  0006    | OP_NIL
+  0007    | OP_RETURN
+  */
+
   if (current->type == TYPE_SCRIPT) {
     error("Can't return from top-level code.");
   }
