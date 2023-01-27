@@ -267,7 +267,7 @@ static int resolveLocal(Compiler* compiler, Token* name) {
 }
 
 static int addUpvalue(Compiler* compiler, uint8_t index, bool isLocal) {
-  int upvalueCount = compiler->function->upvalueCount;
+  int upvalueCount = compiler->function->upvalueCount; // initialized to zero.jjj
 
   for (int i = 0; i < upvalueCount; i++) {
     Upvalue* upvalue = &compiler->upvalues[i];
@@ -589,7 +589,7 @@ static void function(FunctionType type) {
 
   consume(TOKEN_RIGHT_PAREN, "Expect ')' after parameters.");
   consume(TOKEN_LEFT_BRACE, "Expect '{' before function body.");
-  block();
+  block(); // upvalues are found and initialized here if needed
 
   ObjFunction* function = endCompiler();
   emitBytes(OP_CLOSURE, makeConstant(OBJ_VAL(function)));
