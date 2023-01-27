@@ -175,6 +175,7 @@ static InterpretResult run() {
   CallFrame* frame = &vm.frames[vm.frameCount - 1];
 
 #define READ_BYTE() (*frame->ip++)
+#define FRAME_CALLABLE() (frame->isClosure ? frame->callable->closure : frame->callable->function)
 
 #define READ_SHORT() \
     (frame->ip += 2, \
