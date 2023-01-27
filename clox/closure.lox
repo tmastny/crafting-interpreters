@@ -1,3 +1,46 @@
+var globalSet;
+var globalGet;
+
+fun main() {
+  var a = "initial";
+
+  fun set() { a = "updated"; }
+  fun get() { print a; }
+
+  globalSet = set;
+  globalGet = get;
+}
+
+main();
+globalSet();
+globalGet();
+
+
+
+
+fun outer() {
+  var x = "outside";
+  fun inner() {
+    print x;
+  }
+  inner();
+}
+outer(); // outside
+
+
+fun outer() {
+  var x = "outside";
+  fun inner() {
+    print x;
+  }
+
+  return inner;
+}
+
+var closure = outer();
+closure();
+
+
 var x = "global";
 fun outer() {
   var x = "outer";
