@@ -18,84 +18,84 @@ globalGet();
 
 
 
-fun outer() {
-  var x = "outside";
-  fun inner() {
-    print x;
-  }
-  inner();
-}
-outer(); // outside
+// fun outer() {
+//   var x = "outside";
+//   fun inner() {
+//     print x;
+//   }
+//   inner();
+// }
+// outer(); // outside
 
 
-fun outer() {
-  var x = "outside";
-  fun inner() {
-    print x;
-  }
+// fun outer() {
+//   var x = "outside";
+//   fun inner() {
+//     print x;
+//   }
 
-  return inner;
-}
+//   return inner;
+// }
 
-var closure = outer();
-closure();
-
-
-var x = "global";
-fun outer() {
-  var x = "outer";
-  fun inner() {
-    print x;
-  }
-  inner();
-}
-outer(); // outer
+// var closure = outer();
+// closure();
 
 
-fun makeClosure() {
-  var local = "local";
-  fun closure() {
-    print local;
-  }
-  return closure;
-}
+// var x = "global";
+// fun outer() {
+//   var x = "outer";
+//   fun inner() {
+//     print x;
+//   }
+//   inner();
+// }
+// outer(); // outer
 
-var closure = makeClosure();
-closure(); // local
 
-// closures capture the function
-// _as it is called at runtime_
-// not statically at compile time:
-fun makeClosure(value) {
-  fun closure() {
-    print value;
-  }
-  return closure;
-}
+// fun makeClosure() {
+//   var local = "local";
+//   fun closure() {
+//     print local;
+//   }
+//   return closure;
+// }
 
-var doughnut = makeClosure("doughnut");
-var bagel = makeClosure("bagel");
-doughnut(); // doughnut
-bagel(); // bagel
+// var closure = makeClosure();
+// closure(); // local
 
-fun outer() {
-  var x = "value";
-  fun middle() {
-    fun inner() {
-      print x;
-    }
+// // closures capture the function
+// // _as it is called at runtime_
+// // not statically at compile time:
+// fun makeClosure(value) {
+//   fun closure() {
+//     print value;
+//   }
+//   return closure;
+// }
 
-    print "create inner closure";
-    return inner;
-  }
+// var doughnut = makeClosure("doughnut");
+// var bagel = makeClosure("bagel");
+// doughnut(); // doughnut
+// bagel(); // bagel
 
-  print "return from outer";
-  return middle;
-}
+// fun outer() {
+//   var x = "value";
+//   fun middle() {
+//     fun inner() {
+//       print x;
+//     }
 
-var mid = outer();
-var in = mid();
-in();
-// return from outer
-// create inner closure
-// value
+//     print "create inner closure";
+//     return inner;
+//   }
+
+//   print "return from outer";
+//   return middle;
+// }
+
+// var mid = outer();
+// var in = mid();
+// in();
+// // return from outer
+// // create inner closure
+// // value
