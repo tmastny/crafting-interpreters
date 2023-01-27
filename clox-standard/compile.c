@@ -592,12 +592,10 @@ static void function(FunctionType type) {
   block(); // upvalues are found and initialized here if needed
 
   ObjFunction* function = endCompiler();
-  if (function->upvalueCount > 0) {
-    emitBytes(OP_CLOSURE, makeConstant(OBJ_VAL(function)));
-    for (int i = 0; i < function->upvalueCount; i++) {
-      emitByte(compiler.upvalues[i].isLocal ? 1 : 0);
-      emitByte(compiler.upvalues[i].index);
-    }
+  emitBytes(OP_CLOSURE, makeConstant(OBJ_VAL(function)));
+  for (int i = 0; i < function->upvalueCount; i++) {
+    emitByte(compiler.upvalues[i].isLocal ? 1 : 0);
+    emitByte(compiler.upvalues[i].index);
   }
 }
 
