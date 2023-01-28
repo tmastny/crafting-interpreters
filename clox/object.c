@@ -13,6 +13,11 @@
 static Obj* allocateObject(size_t size, ObjType type) {
   Obj* object = (Obj*)reallocate(NULL, 0, size);
   object->type = type;
+  // need to set to gcMark. If set to 0 (or any other number)
+  // it won't work in the edge case where after overflow,
+  // `gcMark == 0`. Then new objects will mistakenly be marked.
+  // In the case, all objects are set to "unmarked" until
+  // processed by `markRoots`
   object->gcMark = gcMark;
 
   object->next = vm.objects;
