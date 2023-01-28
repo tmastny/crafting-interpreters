@@ -17,6 +17,7 @@ void* reallocate(void* pointer, size_t oldSize, size_t newSize) {
 #ifdef DEBUG_STRESS_GC
     collectGarbage();
 #endif
+
     if (vm.bytesAllocated > vm.nextGC) {
       collectGarbage();
     }
@@ -45,11 +46,11 @@ void markObject(Obj* object) {
   if (vm.grayCapacity < vm.grayCount + 1) {
     vm.grayCapacity = GROW_CAPACITY(vm.grayCapacity);
     vm.grayStack = (Obj**)realloc(vm.grayStack, sizeof(Obj*) * vm.grayCapacity);
+
+    if (vm.grayStack == NULL) exit(1);
   }
 
   vm.grayStack[vm.grayCount++] = object;
-
-  if (vm.grayStack == NULL) exit(1);
 }
 
 void markValue(Value value) {
