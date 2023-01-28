@@ -25,3 +25,7 @@ But this function should be marked in
 reason it's not.
 - Ah, turns out I was marking the enclosing
   rather than the function
+
+Also interesting to note:
+- garbage collection does not free dangling strings
+  in the global namespace: https://github.com/munificent/craftinginterpreters/issues/1068
