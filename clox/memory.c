@@ -27,6 +27,7 @@ void* reallocate(void* pointer, size_t oldSize, size_t newSize) {
 
 void markObject(Obj* object) {
   if (object == NULL) return;
+  if (object->isMarked) return;
 #ifdef DEBUG_LOG_GC
   printf("%p mark ", (void*)object);
   printValue(OBJ_VAL(object));
@@ -127,6 +128,29 @@ void traceReferences() {
   }
 }
 
+static void sweep() {
+  Obj* previous = NULL;
+  // every time we allocate an object, we keep a linked list of _all_ objects
+  // so we can traverse all objects and track which ones have been marked
+  Obj* object = vm.objects;
+  while (object != NULL) {
+    if (object->isMarked) {
+      previous = object;
+      object = object->next;
+    } else {
+      Obj* unreached = object;
+      object = object->next;
+      if (previous != NULL) {
+        previous->next = object;
+      } else {
+        vm.objects = object;
+      }
+
+      freeObject(unreached);
+    }
+  }
+}
+
 static void markRoots() {
   for (Value* slot = vm.stack; slot < vm.stackTop; slot++) {
     markValue(*slot);
@@ -154,6 +178,7 @@ void collectGarbage() {
 
   markRoots();
   traceReferences();
+  sweep();
 
 #ifdef DEBUG_LOG_GC
   printf("-- gc end\n");
