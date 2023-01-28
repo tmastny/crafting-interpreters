@@ -817,6 +817,6 @@ void markCompilerRoots() {
   Compiler* compiler = current;
   while (compiler != NULL) {
     markObject((Obj*)compiler->enclosing);
-    compiler = compiler->enclosing;
+    compiler = compiler->function;
   }
 }

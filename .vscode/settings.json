@@ -29,6 +29,8 @@
     "vm.h": "c",
     "__config": "c",
     "__threading_support": "c",
-    "__availability": "c"
+    "__availability": "c",
+    "__hash_table": "c",
+    "iterator": "c"
   }
 }
