@@ -11,7 +11,7 @@
 
 #define GC_HEAP_GROW_FACTOR 2
 
-gcMark = 0;
+int gcMark = 0;
 
 void* reallocate(void* pointer, size_t oldSize, size_t newSize) {
   vm.bytesAllocated += newSize - oldSize;
