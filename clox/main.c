@@ -2,10 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "object.h"
 #include "common.h"
 #include "chunk.h"
 #include "debug.h"
 #include "vm.h"
+
+typedef struct {
+  ObjType type;
+  struct Obj2* next;
+} Obj2;
+
 
 static void repl() {
   char line[1024];
@@ -58,7 +65,28 @@ static void runFile(const char* path) {
 }
 
 int main(int argc, const char* argv[]) {
-  initVM();
+  // initVM();
+
+  printf("Obj total:     %d\n", sizeof(Obj));
+  printf("    - ObjType: %d\n", sizeof(ObjType));
+  printf("    - bool:    %d\n", sizeof(bool));
+  printf("    - Obj*:    %d\n", sizeof(Obj*));
+  printf("\n\n\n");
+
+  // because of object padding, the extra field `isMarked`
+  // doesn't change the total size.
+  Obj2* obj2;
+  printf("Obj2 total:    %d\n", sizeof(Obj2));
+  printf("    - ObjType: %d\n", sizeof(ObjType));
+  printf("    - Obj*:    %d\n", sizeof(Obj2*));
+  printf("\n");
+
+  // We can't allocate objects into an array (which would
+  // save 8 bytes and have better cache locality), because we
+  // we want constant time deletion of objects in the garbage
+  // collector.
+
+  return 0;
 
   if (argc == 1) {
     repl();
