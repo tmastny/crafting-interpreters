@@ -24,5 +24,6 @@ void markObject(Obj* object);
 void markValue(Value value);
 void collectGarbage();
 void freeObjects();
+int gcMark;
 
 #endif

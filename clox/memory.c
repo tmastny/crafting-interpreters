@@ -11,6 +11,8 @@
 
 #define GC_HEAP_GROW_FACTOR 2
 
+gcMark = 0;
+
 void* reallocate(void* pointer, size_t oldSize, size_t newSize) {
   vm.bytesAllocated += newSize - oldSize;
   if (newSize > oldSize) {
@@ -34,14 +36,14 @@ void* reallocate(void* pointer, size_t oldSize, size_t newSize) {
 
 void markObject(Obj* object) {
   if (object == NULL) return;
-  if (object->isMarked) return;
+  if (object->gcMark == gcMark) return;
 #ifdef DEBUG_LOG_GC
   printf("%p mark ", (void*)object);
   printValue(OBJ_VAL(object));
   printf("\n");
 #endif
 
-  object->isMarked = true;
+  object->gcMark++;
 
   if (vm.grayCapacity < vm.grayCount + 1) {
     vm.grayCapacity = GROW_CAPACITY(vm.grayCapacity);
@@ -141,8 +143,7 @@ static void sweep() {
   // so we can traverse all objects and track which ones have been marked
   Obj* object = vm.objects;
   while (object != NULL) {
-    if (object->isMarked) {
-      object->isMarked = false;
+    if (object->gcMark == gcMark) {
       previous = object;
       object = object->next;
     } else {
@@ -180,6 +181,7 @@ static void markRoots() {
 
 
 void collectGarbage() {
+  gcMark++;
 #ifdef DEBUG_LOG_GC
   printf("-- gc begin\n");
   size_t before = vm.bytesAllocated;
@@ -187,7 +189,7 @@ void collectGarbage() {
 
   markRoots();
   traceReferences();
-  tableRemoveWhite(&vm.strings);
+  tableRemoveWhite(&vm.strings, gcMark);
   sweep();
 
   vm.nextGC = vm.bytesAllocated * GC_HEAP_GROW_FACTOR;
