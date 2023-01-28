@@ -5,7 +5,7 @@
 #include "chunk.h"
 #include "common.h"
 #include "compile.h"
-#include "memory.c"
+#include "memory.h"
 #include "scanner.h"
 
 #ifdef DEBUG_PRINT_CODE
