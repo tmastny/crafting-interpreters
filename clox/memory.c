@@ -137,7 +137,7 @@ void traceReferences() {
 
 static void sweep() {
   Obj* previous = NULL;
-  // every time we allocate an object, we keep a linked list of _all_ objects
+  // when we allocate an object, we add it to a _linked list_ of all objects
   // so we can traverse all objects and track which ones have been marked
   Obj* object = vm.objects;
   while (object != NULL) {
