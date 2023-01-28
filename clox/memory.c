@@ -135,6 +135,7 @@ static void sweep() {
   Obj* object = vm.objects;
   while (object != NULL) {
     if (object->isMarked) {
+      object->isMarked = false;
       previous = object;
       object = object->next;
     } else {
@@ -178,6 +179,7 @@ void collectGarbage() {
 
   markRoots();
   traceReferences();
+  tableRemoveWhite(&vm.strings);
   sweep();
 
 #ifdef DEBUG_LOG_GC
