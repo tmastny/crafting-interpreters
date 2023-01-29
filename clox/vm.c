@@ -120,7 +120,7 @@ static bool callValue(Value callee, int argCount) {
         return true;
       }
       default:
-        break; // Non-callable object tpye
+        break; // Non-callable object type
     }
   }
   runtimeError("Can only call functions and classes.");
