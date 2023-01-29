@@ -14,5 +14,5 @@ print c();
 c = makeCounter(10);
 print c();
 
-c = makeCounter(20); // `makeCounter(0) closure collected here.
+c = makeCounter(20); // `makeCounter(0)` closure collected here.
 print c();
