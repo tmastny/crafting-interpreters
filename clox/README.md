@@ -59,3 +59,14 @@ and doesn't find the first `OP_CLOSURE`.
 list.
 - upValue 1, closure
 - (see line 824)
+
+# Chapter 27
+
+Python offers the following functions to use strings
+to work with properties (Python calls them attributes):
+- `hasattr`: check if field exists
+- `getattr`: retrieve attribute value
+- `delattr`: delete attribute
+- `setattr`: set attribute
+
+Implementing these (minus the last) will resolve exercises 1-3.
