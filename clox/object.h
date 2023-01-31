@@ -72,8 +72,9 @@ typedef struct ObjUpvalue {
   struct ObjUpvalue* next;
 } ObjUpvalue;
 
-typedef struct {
+typedef struct ObjClosure {
   Obj obj;
+  struct ObjClosure* inner;
   ObjFunction* function;
   ObjUpvalue** upvalues;
   int upvalueCount;

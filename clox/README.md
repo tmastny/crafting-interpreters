@@ -59,3 +59,15 @@ and doesn't find the first `OP_CLOSURE`.
 list.
 - upValue 1, closure
 - (see line 824)
+
+# Chapter 29
+## Exercise 3
+
+I think we can resolve this during `OP_METHOD`:
+- `OP_INHERIT`: all superclass methods copied to subclass,
+  including methods with `inner`.
+- `defineMethod`: first check if method already exists in the table
+  (that means it's inherited). If it exists, then we need to bind the new method
+  to the local variable `inner` in the method space.
+- define a new `OP_INVOKE_INNER`, which will call the inner function
+  defined as a pointer on the inner object.
