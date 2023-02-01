@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "chunk.h"
 #include "common.h"
@@ -116,10 +117,17 @@ static void emitReturn() {
 }
 
 static uint8_t makeConstant(Value value) {
+  // note: still duplicates non-string constants
+  printf("---> in makeConstant. Constants: ");
+  for (int i = 0; i < currentChunk()->constants.count; i++) {
+    printValue(currentChunk()->constants.values[i]);
+    printf(", ");
+  }
+  printf("\n");
+
   int constant = addConstant(currentChunk(), value);
   if (constant > UINT8_MAX) {
-    error("Too many constants in one chunk.");
-    return 0;
+    error("Too many constants in one chunk.");    return 0;
   }
 
   return (uint8_t)constant;
@@ -146,6 +154,24 @@ static void parsePrecedence(Precedence precedence);
 
 static uint8_t identifierConstant(Token* name) {
   return makeConstant(OBJ_VAL(copyString(name->start, name->length)));
+}
+
+static uint8_t findIdentifierConstant(Token* name) {
+  // this is a compile time trade-off, because retreiving the constant Value
+  // at runtime is still an index array lookup.
+  int count = currentChunk()->constants.count;
+  for (int i = 0; i < count; i++) {
+    Value value = currentChunk()->constants.values[i];
+    if (IS_OBJ(value) && memcmp(AS_CSTRING(value), name->start, name->length) == 0) {
+      return i;
+    }
+  }
+
+  // variable not found. Create new constant.
+  // NOT a compile time error, because something like this is okay:
+  // `fun t() print a`
+  // `a` may be defined later as a global variable
+  return identifierConstant(name);
 }
 
 static uint8_t parseVariable(const char* errorMessage) {
@@ -201,7 +227,7 @@ static void string(bool canAssign) {
 }
 
 static void namedVariable(Token name, bool canAssign) {
-  uint8_t arg = identifierConstant(&name);
+  uint8_t arg = findIdentifierConstant(&name);
 
   if (canAssign && match(TOKEN_EQUAL)) {
     expression();
