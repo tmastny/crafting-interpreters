@@ -20,6 +20,7 @@ typedef struct {
 typedef enum {
   PREC_NONE,
   PREC_ASSIGNMENT,  // =
+  PERC_TERNARY,     // ? :
   PREC_OR,          // or
   PREC_AND,         // and
   PREC_EQUALITY,    // == !=
@@ -169,6 +170,24 @@ static void unary() {
   }
 }
 
+// Example to see that it parsers precedence correctly:
+//  1 ? 1 + 2: -3
+//  1 * 4 ? 1 + 2 / 3 : 4
+static void ternary() {
+  expression();
+  consume(TOKEN_COLON, "Missing colon.");
+  expression();
+  /* Possible vm implementation
+    - Write OP_TERNARY
+    - OP_TERNARY in vm:
+      - previous expression calls put conditional and then, else
+      on the stack
+
+      - pop all three. If last is true, put then back on stack.
+      Else put else on stack
+  */
+}
+
 ParseRule rules[] = {
   [TOKEN_LEFT_PAREN]    = {grouping, NULL,   PREC_NONE},
   [TOKEN_RIGHT_PAREN]   = {NULL,     NULL,   PREC_NONE},
@@ -210,6 +229,11 @@ ParseRule rules[] = {
   [TOKEN_WHILE]         = {NULL,     NULL,   PREC_NONE},
   [TOKEN_ERROR]         = {NULL,     NULL,   PREC_NONE},
   [TOKEN_EOF]           = {NULL,     NULL,   PREC_NONE},
+  [TOKEN_QMARK]         = {NULL,     ternary,PERC_TERNARY},
+  [TOKEN_COLON]         = {NULL,     NULL,   PREC_NONE}
+  //                                         ^ need to have this none-precedence so
+  //                                           `expression` call terminates in the
+  //                                           ternary function
 };
 
 static void parsePrecedence(Precedence precedence) {
