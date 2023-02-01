@@ -3,6 +3,9 @@
 This is my implementation of crafting interpreters.
 I followed the book's implementation almost exactly.
 
+Check out the Pull Request section for my attempt
+at the `clox` exercises.
+
 As I worked through the book, I occasionally found it
 useful to refer to the author's implementations,
 which can be found on his Github [here](https://github.com/munificent/craftinginterpreters).
