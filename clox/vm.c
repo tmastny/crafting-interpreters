@@ -12,7 +12,97 @@
 
 VM vm;
 
-static Value clockNative(int argCount, Value* args) {
+static void runtimeError(const char* format, ...);
+
+static Value delattrNative(int argCount, Value* args, bool* successful) {
+  if (argCount != 2) {
+    runtimeError("hasattr requires 2 arguments.");
+    *successful = false;
+    return NIV_VAL;
+  }
+  if (!IS_INSTANCE(*args)) {
+    runtimeError("Value is not an instance.");
+    *successful = false;
+    return NIV_VAL;
+  }
+  if (!IS_STRING(*(args + 1))) {
+    runtimeError("Attribute must be a string.");
+    *successful = false;
+    return NIV_VAL;
+  }
+
+  ObjInstance* instance = AS_INSTANCE(*args);
+  ObjString* name = AS_STRING(*(args+ 1));
+
+  Value value;
+  bool hasattr = tableDelete(&instance->fields, name);
+  if (!hasattr) {
+    runtimeError("Attribute does not exist.");
+    *successful = false;
+    return NIV_VAL;
+  }
+
+  return NIV_VAL;
+}
+
+static Value getattrNative(int argCount, Value* args, bool* successful) {
+  if (argCount != 2) {
+    runtimeError("hasattr requires 2 arguments.");
+    *successful = false;
+    return NIV_VAL;
+  }
+  if (!IS_INSTANCE(*args)) {
+    runtimeError("Value is not an instance.");
+    *successful = false;
+    return NIV_VAL;
+  }
+  if (!IS_STRING(*(args + 1))) {
+    runtimeError("Attribute must be a string.");
+    *successful = false;
+    return NIV_VAL;
+  }
+
+  ObjInstance* instance = AS_INSTANCE(*args);
+  ObjString* name = AS_STRING(*(args+ 1));
+
+  Value value;
+  bool hasattr = tableGet(&instance->fields, name, &value);
+  if (!hasattr) {
+    runtimeError("Attribute does not exist.");
+    *successful = false;
+    return NIV_VAL;
+  }
+
+  return value;
+}
+
+static Value hasattrNative(int argCount, Value* args, bool* successful) {
+  if (argCount != 2) {
+    runtimeError("hasattr requires 2 arguments.");
+    *successful = false;
+    return NIV_VAL;
+  }
+  if (!IS_INSTANCE(*args)) {
+    runtimeError("Value is not an instance.");
+    *successful = false;
+    return NIV_VAL;
+  }
+  if (!IS_STRING(*(args + 1))) {
+    runtimeError("Attribute must be a string.");
+    *successful = false;
+    return NIV_VAL;
+  }
+
+  ObjInstance* instance = AS_INSTANCE(*args);
+  ObjString* name = AS_STRING(*(args+ 1));
+
+  Value value;
+  bool hasattr = tableGet(&instance->fields, name, &value);
+
+  return BOOL_VAL(hasattr);
+}
+
+static Value clockNative(int argCount, Value* args, bool* successful) {
   return NUMBER_VAL((double)clock() / CLOCKS_PER_SEC);
 }
 
@@ -67,6 +157,9 @@ void initVM() {
   initTable(&vm.strings);
 
   defineNative("clock", clockNative);
+  defineNative("hasattr", hasattrNative);
+  defineNative("getattr", getattrNative);
+  defineNative("delattr", delattrNative);
 }
 
 void freeVM() {
@@ -119,10 +212,11 @@ static bool callValue(Value callee, int argCount) {
         return call(AS_CLOSURE(callee), argCount);
       case OBJ_NATIVE: {
         NativeFn native = AS_NATIVE(callee);
-        Value result = native(argCount, vm.stackTop - argCount);
+        bool successful = true;
+        Value result = native(argCount, vm.stackTop - argCount, &successful);
         vm.stackTop -= argCount + 1;
         push(result);
-        return true;
+        return successful;
       }
       default:
         break; // Non-callable object type

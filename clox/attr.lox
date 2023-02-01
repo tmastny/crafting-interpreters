@@ -1,0 +1,10 @@
+class P {}
+var p = P();
+print hasattr(p, "first");
+p.second = 2;
+print hasattr(p, "second");
+
+print getattr(p, "second");
+
+delattr(p, "second");
+print hasattr(p, "second");
