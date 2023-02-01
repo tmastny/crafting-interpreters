@@ -1,0 +1,957 @@
+-- gc begin
+-- gc end
+   collected 0 bytes (from 6 to 6) next at 12
+-- gc begin
+-- gc end
+   collected 0 bytes (from 46 to 46) next at 92
+0x131704090 allocate 40 for 3
+-- gc begin
+0x131704090 mark clock
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 238 to 238) next at 476
+-- gc begin
+0x131704090 mark clock
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 262 to 262) next at 524
+0x1317041c0 allocate 24 for 2
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 454 to 454) next at 908
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 526 to 526) next at 1052
+0x1317043c0 allocate 72 for 1
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 538 to 538) next at 1076
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 578 to 578) next at 1156
+0x131704420 allocate 40 for 3
+-- gc begin
+0x131704420 mark makeCounter
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+0x131704420 blacken makeCounter
+-- gc end
+   collected 0 bytes (from 706 to 706) next at 1412
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x131704420 blacken makeCounter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 778 to 778) next at 1556
+0x1317044d0 allocate 72 for 1
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317044d0 mark <fn makeCounter>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x131704420 blacken makeCounter
+0x1317044d0 blacken <fn makeCounter>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 786 to 786) next at 1572
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317044d0 mark <fn makeCounter>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x131704420 blacken makeCounter
+0x1317044d0 blacken <fn makeCounter>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 818 to 818) next at 1636
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317044d0 mark <fn makeCounter>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x131704420 blacken makeCounter
+0x1317044d0 blacken <fn makeCounter>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 890 to 890) next at 1780
+0x131704550 allocate 72 for 1
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x131704550 mark <script>
+0x1317044d0 mark <fn makeCounter>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x131704420 blacken makeCounter
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 blacken <script>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 898 to 898) next at 1796
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x131704550 mark <script>
+0x1317044d0 mark <fn makeCounter>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x131704420 blacken makeCounter
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 blacken <script>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 938 to 938) next at 1876
+0x1317045b0 allocate 40 for 3
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x131704550 mark <fn counter>
+0x1317044d0 mark <fn makeCounter>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x131704420 blacken makeCounter
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 946 to 946) next at 1892
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x131704550 mark <fn counter>
+0x1317044d0 mark <fn makeCounter>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x131704420 blacken makeCounter
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 978 to 978) next at 1956
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x131704550 mark <fn counter>
+0x1317044d0 mark <fn makeCounter>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x131704420 blacken makeCounter
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 1106 to 1106) next at 2212
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x131704550 mark <fn counter>
+0x1317044d0 mark <fn makeCounter>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x131704420 blacken makeCounter
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 1114 to 1114) next at 2228
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x131704550 mark <fn counter>
+0x1317044d0 mark <fn makeCounter>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x131704420 blacken makeCounter
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 1146 to 1146) next at 2292
+== counter ==
+0000    4 OP_GET_UPVALUE      0
+0002    | OP_CONSTANT         0 '1'
+0004    | OP_ADD
+0005    | OP_SET_UPVALUE      0
+0007    | OP_POP
+0008    5 OP_GET_UPVALUE      0
+0010    | OP_RETURN
+0011    6 OP_NIL
+0012    | OP_RETURN
+-- gc begin
+0x131704550 mark <fn counter>
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317044d0 mark <fn makeCounter>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x131704420 blacken makeCounter
+0x1317044d0 blacken <fn makeCounter>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+-- gc end
+   collected 0 bytes (from 1274 to 1274) next at 2548
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317044d0 mark <fn makeCounter>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x131704420 blacken makeCounter
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 mark <fn counter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 1282 to 1282) next at 2564
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317044d0 mark <fn makeCounter>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x131704420 blacken makeCounter
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 mark <fn counter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 1314 to 1314) next at 2628
+== makeCounter ==
+0000    2 OP_GET_LOCAL        1
+0002    6 OP_CLOSURE          0 <fn counter>
+0004      |                     local 2
+0006    8 OP_GET_LOCAL        3
+0008    | OP_RETURN
+0009    9 OP_NIL
+0010    | OP_RETURN
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x1317044d0 mark <fn makeCounter>
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 mark <fn counter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704420 blacken makeCounter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 1322 to 1322) next at 2644
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x1317044d0 mark <fn makeCounter>
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 mark <fn counter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704420 blacken makeCounter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 1354 to 1354) next at 2708
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x1317044d0 mark <fn makeCounter>
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 mark <fn counter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704420 blacken makeCounter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 1356 to 1356) next at 2712
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x1317044d0 mark <fn makeCounter>
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 mark <fn counter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704420 blacken makeCounter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 1396 to 1396) next at 2792
+0x131704830 allocate 40 for 3
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x1317044d0 mark <fn makeCounter>
+0x131704830 mark c
+0x131704830 blacken c
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 mark <fn counter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704420 blacken makeCounter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 1404 to 1404) next at 2808
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x1317044d0 mark <fn makeCounter>
+0x131704830 mark c
+0x131704830 blacken c
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 mark <fn counter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704420 blacken makeCounter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 1436 to 1436) next at 2872
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x1317044d0 mark <fn makeCounter>
+0x131704830 mark c
+0x131704830 blacken c
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 mark <fn counter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704420 blacken makeCounter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 1452 to 1452) next at 2904
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x1317044d0 mark <fn makeCounter>
+0x131704830 mark c
+0x131704830 blacken c
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 mark <fn counter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704420 blacken makeCounter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 1516 to 1516) next at 3032
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x1317044d0 mark <fn makeCounter>
+0x131704830 mark c
+0x131704830 blacken c
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 mark <fn counter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704420 blacken makeCounter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 1644 to 1644) next at 3288
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x1317044d0 mark <fn makeCounter>
+0x131704830 mark c
+0x131704830 blacken c
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 mark <fn counter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704420 blacken makeCounter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 1676 to 1676) next at 3352
+-- gc begin
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x1317044d0 mark <fn makeCounter>
+0x131704830 mark c
+0x131704830 blacken c
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 mark <fn counter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704420 blacken makeCounter
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+-- gc end
+   collected 0 bytes (from 1804 to 1804) next at 3608
+== <script> ==
+0000    9 OP_CLOSURE          1 <fn makeCounter>
+0002    | OP_DEFINE_GLOBAL    0 'makeCounter'
+0004   11 OP_GET_GLOBAL       3 'makeCounter'
+0006    | OP_CONSTANT         4 '0'
+0008    | OP_CALL             1
+0010    | OP_DEFINE_GLOBAL    2 'c'
+0012   12 OP_GET_GLOBAL       5 'c'
+0014    | OP_CALL             0
+0016    | OP_PRINT
+0017   14 OP_GET_GLOBAL       7 'makeCounter'
+0019    | OP_CONSTANT         8 '10'
+0021    | OP_CALL             1
+0023    | OP_SET_GLOBAL       6 'c'
+0025    | OP_POP
+0026   15 OP_GET_GLOBAL       9 'c'
+0028    | OP_CALL             0
+0030    | OP_PRINT
+0031   17 OP_GET_GLOBAL      11 'makeCounter'
+0033    | OP_CONSTANT        12 '20'
+0035    | OP_CALL             1
+0037    | OP_SET_GLOBAL      10 'c'
+0039    | OP_POP
+0040   18 OP_GET_GLOBAL      13 'c'
+0042    | OP_CALL             0
+0044    | OP_PRINT
+0045   19 OP_NIL
+0046    | OP_RETURN
+-- gc begin
+0x1317043c0 mark <script>
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x1317044d0 mark <fn makeCounter>
+0x131704830 mark c
+0x131704830 blacken c
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 mark <fn counter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704420 blacken makeCounter
+-- gc end
+   collected 0 bytes (from 1844 to 1844) next at 3688
+0x131704450 allocate 40 for 0
+          [ <script> ]
+0000    9 OP_CLOSURE          1 <fn makeCounter>
+-- gc begin
+0x131704450 mark <script>
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+0x131704450 blacken <script>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704420 mark makeCounter
+0x1317044d0 mark <fn makeCounter>
+0x131704830 mark c
+0x131704830 blacken c
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 mark <fn counter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704420 blacken makeCounter
+-- gc end
+   collected 0 bytes (from 1884 to 1884) next at 3768
+0x131704480 allocate 40 for 0
+          [ <script> ][ <fn makeCounter> ]
+0002    | OP_DEFINE_GLOBAL    0 'makeCounter'
+          [ <script> ]
+0004   11 OP_GET_GLOBAL       3 'makeCounter'
+          [ <script> ][ <fn makeCounter> ]
+0006    | OP_CONSTANT         4 '0'
+          [ <script> ][ <fn makeCounter> ][ 0 ]
+0008    | OP_CALL             1
+          [ <script> ][ <fn makeCounter> ][ 0 ]
+0000    2 OP_GET_LOCAL        1
+          [ <script> ][ <fn makeCounter> ][ 0 ][ 0 ]
+0002    6 OP_CLOSURE          0 <fn counter>
+0004      |                     local 2
+-- gc begin
+0x131704450 mark <script>
+0x131704480 mark <fn makeCounter>
+0x131704420 mark makeCounter
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+0x131704420 blacken makeCounter
+0x131704480 blacken <fn makeCounter>
+0x1317044d0 mark <fn makeCounter>
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 mark <fn counter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704450 blacken <script>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704830 mark c
+0x131704830 blacken c
+-- gc end
+   collected 0 bytes (from 1892 to 1892) next at 3784
+-- gc begin
+0x131704450 mark <script>
+0x131704480 mark <fn makeCounter>
+0x131704420 mark makeCounter
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+0x131704420 blacken makeCounter
+0x131704480 blacken <fn makeCounter>
+0x1317044d0 mark <fn makeCounter>
+0x1317044d0 blacken <fn makeCounter>
+0x131704550 mark <fn counter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704450 blacken <script>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704830 mark c
+0x131704830 blacken c
+-- gc end
+   collected 0 bytes (from 1932 to 1932) next at 3864
+0x131704b20 allocate 40 for 0
+-- gc begin
+0x131704450 mark <script>
+0x131704480 mark <fn makeCounter>
+0x131704b20 mark <fn counter>
+0x131704420 mark makeCounter
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+0x131704420 blacken makeCounter
+0x131704b20 blacken <fn counter>
+0x131704550 mark <fn counter>
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704480 blacken <fn makeCounter>
+0x1317044d0 mark <fn makeCounter>
+0x1317044d0 blacken <fn makeCounter>
+0x131704450 blacken <script>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704830 mark c
+0x131704830 blacken c
+-- gc end
+   collected 0 bytes (from 1980 to 1980) next at 3960
+0x131704b50 allocate 48 for 4
+          [ <script> ][ <fn makeCounter> ][ 0 ][ 0 ][ <fn counter> ]
+0006    8 OP_GET_LOCAL        3
+          [ <script> ][ <fn makeCounter> ][ 0 ][ 0 ][ <fn counter> ][ <fn counter> ]
+0008    | OP_RETURN
+          [ <script> ][ <fn counter> ]
+0010    | OP_DEFINE_GLOBAL    2 'c'
+          [ <script> ]
+0012   12 OP_GET_GLOBAL       5 'c'
+          [ <script> ][ <fn counter> ]
+0014    | OP_CALL             0
+          [ <script> ][ <fn counter> ]
+0000    4 OP_GET_UPVALUE      0
+          [ <script> ][ <fn counter> ][ 0 ]
+0002    | OP_CONSTANT         0 '1'
+          [ <script> ][ <fn counter> ][ 0 ][ 1 ]
+0004    | OP_ADD
+          [ <script> ][ <fn counter> ][ 1 ]
+0005    | OP_SET_UPVALUE      0
+          [ <script> ][ <fn counter> ][ 1 ]
+0007    | OP_POP
+          [ <script> ][ <fn counter> ]
+0008    5 OP_GET_UPVALUE      0
+          [ <script> ][ <fn counter> ][ 1 ]
+0010    | OP_RETURN
+          [ <script> ][ 1 ]
+0016    | OP_PRINT
+1
+          [ <script> ]
+0017   14 OP_GET_GLOBAL       7 'makeCounter'
+          [ <script> ][ <fn makeCounter> ]
+0019    | OP_CONSTANT         8 '10'
+          [ <script> ][ <fn makeCounter> ][ 10 ]
+0021    | OP_CALL             1
+          [ <script> ][ <fn makeCounter> ][ 10 ]
+0000    2 OP_GET_LOCAL        1
+          [ <script> ][ <fn makeCounter> ][ 10 ][ 10 ]
+0002    6 OP_CLOSURE          0 <fn counter>
+0004      |                     local 2
+-- gc begin
+0x131704450 mark <script>
+0x131704480 mark <fn makeCounter>
+0x131704420 mark makeCounter
+0x131704830 mark c
+0x131704b20 mark <fn counter>
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+0x131704b20 blacken <fn counter>
+0x131704550 mark <fn counter>
+0x131704b50 mark upvalue
+0x131704b50 blacken upvalue
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704830 blacken c
+0x131704420 blacken makeCounter
+0x131704480 blacken <fn makeCounter>
+0x1317044d0 mark <fn makeCounter>
+0x1317044d0 blacken <fn makeCounter>
+0x131704450 blacken <script>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+-- gc end
+   collected 0 bytes (from 1988 to 1988) next at 3976
+-- gc begin
+0x131704450 mark <script>
+0x131704480 mark <fn makeCounter>
+0x131704420 mark makeCounter
+0x131704830 mark c
+0x131704b20 mark <fn counter>
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+0x131704b20 blacken <fn counter>
+0x131704550 mark <fn counter>
+0x131704b50 mark upvalue
+0x131704b50 blacken upvalue
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704830 blacken c
+0x131704420 blacken makeCounter
+0x131704480 blacken <fn makeCounter>
+0x1317044d0 mark <fn makeCounter>
+0x1317044d0 blacken <fn makeCounter>
+0x131704450 blacken <script>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+-- gc end
+   collected 0 bytes (from 2028 to 2028) next at 4056
+0x131704b80 allocate 40 for 0
+-- gc begin
+0x131704450 mark <script>
+0x131704480 mark <fn makeCounter>
+0x131704b80 mark <fn counter>
+0x131704420 mark makeCounter
+0x131704830 mark c
+0x131704b20 mark <fn counter>
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+0x131704b20 blacken <fn counter>
+0x131704550 mark <fn counter>
+0x131704b50 mark upvalue
+0x131704b50 blacken upvalue
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704830 blacken c
+0x131704420 blacken makeCounter
+0x131704b80 blacken <fn counter>
+0x131704480 blacken <fn makeCounter>
+0x1317044d0 mark <fn makeCounter>
+0x1317044d0 blacken <fn makeCounter>
+0x131704450 blacken <script>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+-- gc end
+   collected 0 bytes (from 2076 to 2076) next at 4152
+0x131704bb0 allocate 48 for 4
+          [ <script> ][ <fn makeCounter> ][ 10 ][ 10 ][ <fn counter> ]
+0006    8 OP_GET_LOCAL        3
+          [ <script> ][ <fn makeCounter> ][ 10 ][ 10 ][ <fn counter> ][ <fn counter> ]
+0008    | OP_RETURN
+          [ <script> ][ <fn counter> ]
+0023    | OP_SET_GLOBAL       6 'c'
+          [ <script> ][ <fn counter> ]
+0025    | OP_POP
+          [ <script> ]
+0026   15 OP_GET_GLOBAL       9 'c'
+          [ <script> ][ <fn counter> ]
+0028    | OP_CALL             0
+          [ <script> ][ <fn counter> ]
+0000    4 OP_GET_UPVALUE      0
+          [ <script> ][ <fn counter> ][ 10 ]
+0002    | OP_CONSTANT         0 '1'
+          [ <script> ][ <fn counter> ][ 10 ][ 1 ]
+0004    | OP_ADD
+          [ <script> ][ <fn counter> ][ 11 ]
+0005    | OP_SET_UPVALUE      0
+          [ <script> ][ <fn counter> ][ 11 ]
+0007    | OP_POP
+          [ <script> ][ <fn counter> ]
+0008    5 OP_GET_UPVALUE      0
+          [ <script> ][ <fn counter> ][ 11 ]
+0010    | OP_RETURN
+          [ <script> ][ 11 ]
+0030    | OP_PRINT
+11
+          [ <script> ]
+0031   17 OP_GET_GLOBAL      11 'makeCounter'
+          [ <script> ][ <fn makeCounter> ]
+0033    | OP_CONSTANT        12 '20'
+          [ <script> ][ <fn makeCounter> ][ 20 ]
+0035    | OP_CALL             1
+          [ <script> ][ <fn makeCounter> ][ 20 ]
+0000    2 OP_GET_LOCAL        1
+          [ <script> ][ <fn makeCounter> ][ 20 ][ 20 ]
+0002    6 OP_CLOSURE          0 <fn counter>
+0004      |                     local 2
+-- gc begin
+0x131704450 mark <script>
+0x131704480 mark <fn makeCounter>
+0x131704420 mark makeCounter
+0x131704830 mark c
+0x131704b80 mark <fn counter>
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+0x131704b80 blacken <fn counter>
+0x131704550 mark <fn counter>
+0x131704bb0 mark upvalue
+0x131704bb0 blacken upvalue
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704830 blacken c
+0x131704420 blacken makeCounter
+0x131704480 blacken <fn makeCounter>
+0x1317044d0 mark <fn makeCounter>
+0x1317044d0 blacken <fn makeCounter>
+0x131704450 blacken <script>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+0x131704b50 free type 4
+0x131704b20 free type 0
+-- gc end
+   collected 96 bytes (from 2084 to 1988) next at 3976
+-- gc begin
+0x131704450 mark <script>
+0x131704480 mark <fn makeCounter>
+0x131704420 mark makeCounter
+0x131704830 mark c
+0x131704b80 mark <fn counter>
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+0x131704b80 blacken <fn counter>
+0x131704550 mark <fn counter>
+0x131704bb0 mark upvalue
+0x131704bb0 blacken upvalue
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704830 blacken c
+0x131704420 blacken makeCounter
+0x131704480 blacken <fn makeCounter>
+0x1317044d0 mark <fn makeCounter>
+0x1317044d0 blacken <fn makeCounter>
+0x131704450 blacken <script>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+-- gc end
+   collected 0 bytes (from 2028 to 2028) next at 4056
+0x131704b20 allocate 40 for 0
+-- gc begin
+0x131704450 mark <script>
+0x131704480 mark <fn makeCounter>
+0x131704b20 mark <fn counter>
+0x131704420 mark makeCounter
+0x131704830 mark c
+0x131704b80 mark <fn counter>
+0x131704090 mark clock
+0x1317041c0 mark <native fn>
+0x1317041c0 blacken <native fn>
+0x131704090 blacken clock
+0x131704b80 blacken <fn counter>
+0x131704550 mark <fn counter>
+0x131704bb0 mark upvalue
+0x131704bb0 blacken upvalue
+0x131704550 blacken <fn counter>
+0x1317045b0 mark counter
+0x1317045b0 blacken counter
+0x131704830 blacken c
+0x131704420 blacken makeCounter
+0x131704b20 blacken <fn counter>
+0x131704480 blacken <fn makeCounter>
+0x1317044d0 mark <fn makeCounter>
+0x1317044d0 blacken <fn makeCounter>
+0x131704450 blacken <script>
+0x1317043c0 mark <script>
+0x1317043c0 blacken <script>
+-- gc end
+   collected 0 bytes (from 2076 to 2076) next at 4152
+0x131704b50 allocate 48 for 4
+          [ <script> ][ <fn makeCounter> ][ 20 ][ 20 ][ <fn counter> ]
+0006    8 OP_GET_LOCAL        3
+          [ <script> ][ <fn makeCounter> ][ 20 ][ 20 ][ <fn counter> ][ <fn counter> ]
+0008    | OP_RETURN
+          [ <script> ][ <fn counter> ]
+0037    | OP_SET_GLOBAL      10 'c'
+          [ <script> ][ <fn counter> ]
+0039    | OP_POP
+          [ <script> ]
+0040   18 OP_GET_GLOBAL      13 'c'
+          [ <script> ][ <fn counter> ]
+0042    | OP_CALL             0
+          [ <script> ][ <fn counter> ]
+0000    4 OP_GET_UPVALUE      0
+          [ <script> ][ <fn counter> ][ 20 ]
+0002    | OP_CONSTANT         0 '1'
+          [ <script> ][ <fn counter> ][ 20 ][ 1 ]
+0004    | OP_ADD
+          [ <script> ][ <fn counter> ][ 21 ]
+0005    | OP_SET_UPVALUE      0
+          [ <script> ][ <fn counter> ][ 21 ]
+0007    | OP_POP
+          [ <script> ][ <fn counter> ]
+0008    5 OP_GET_UPVALUE      0
+          [ <script> ][ <fn counter> ][ 21 ]
+0010    | OP_RETURN
+          [ <script> ][ 21 ]
+0044    | OP_PRINT
+21
+          [ <script> ]
+0045   19 OP_NIL
+          [ <script> ][ nil ]
+0046    | OP_RETURN
+0x131704b50 free type 4
+0x131704b20 free type 0
+0x131704bb0 free type 4
+0x131704b80 free type 0
+0x131704480 free type 0
+0x131704450 free type 0
+0x131704830 free type 3
+0x1317045b0 free type 3
+0x131704550 free type 1
+0x1317044d0 free type 1
+0x131704420 free type 3
+0x1317043c0 free type 1
+0x1317041c0 free type 2
+0x131704090 free type 3
