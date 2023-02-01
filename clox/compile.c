@@ -43,6 +43,7 @@ typedef struct {
 typedef struct {
   Token name;
   int depth;
+  bool assignable;
 } Local;
 
 typedef struct {
@@ -186,21 +187,23 @@ static bool identifiersEqual(Token* a, Token* b) {
   return memcmp(a->start, b->start, a->length) == 0;
 }
 
-static int resolveLocal(Compiler* compiler, Token* name) {
+static int resolveLocal(Compiler* compiler, Token* name, bool* assignable) {
   for (int i = compiler->localCount - 1; i >= 0; i--) {
     Local* local = &compiler->locals[i];
     if (identifiersEqual(name, &local->name)) {
       if (local->depth == -1) {
         error("Can't read local variable in its own initializer.");
       }
+      *assignable = local->assignable;
       return i;
     }
   }
 
+  *assignable = true;
   return -1;
 }
 
-static void addLocal(Token name) {
+static void addLocal(Token name, bool assignable) {
   if (current->localCount == UINT8_COUNT) {
     error("Too many local variables in function.");
     return;
@@ -209,9 +212,10 @@ static void addLocal(Token name) {
   Local* local = &current->locals[current->localCount++];
   local->name = name;
   local->depth = -1;
+  local->assignable = assignable;
 }
 
-static void declareVariable() {
+static void declareVariable(bool assignable) {
   if (current->scopeDepth == 0) return;
 
   Token* name = &parser.previous;
@@ -226,13 +230,14 @@ static void declareVariable() {
     }
   }
 
-  addLocal(*name);
+  addLocal(*name, assignable);
 }
 
 static uint8_t parseVariable(const char* errorMessage) {
+  bool assignable = parser.previous.type == TOKEN_VAR;
   consume(TOKEN_IDENTIFIER, errorMessage);
 
-  declareVariable();
+  declareVariable(assignable);
   if (current->scopeDepth > 0) return 0;
 
   return identifierConstant(&parser.previous);
@@ -296,7 +301,8 @@ static void string(bool canAssign) {
 
 static void namedVariable(Token name, bool canAssign) {
   uint8_t getOp, setOp;
-  int arg = resolveLocal(current, &name);
+  bool* assignable = true;
+  int arg = resolveLocal(current, &name, assignable);
   if (arg != -1) {
     getOp = OP_GET_LOCAL;
     setOp = OP_SET_LOCAL;
@@ -307,6 +313,7 @@ static void namedVariable(Token name, bool canAssign) {
   }
 
   if (canAssign && match(TOKEN_EQUAL)) {
+    if (!*assignable) error("Can't assign a variable declared with let.");
     expression(); // emits a byte on the stack
     emitBytes(setOp, (uint8_t)arg);
   } else {
@@ -449,6 +456,7 @@ static void synchronize() {
       case TOKEN_CLASS:
       case TOKEN_FUN:
       case TOKEN_VAR:
+      case TOKEN_LET:
       case TOKEN_FOR:
       case TOKEN_IF:
       case TOKEN_WHILE:
@@ -464,7 +472,7 @@ static void synchronize() {
 }
 
 static void declaration() {
-  if (match(TOKEN_VAR)) {
+  if (match(TOKEN_VAR) || match(TOKEN_LET)) {
     varDeclaration();
   } else {
     statement();
