@@ -37,3 +37,7 @@ print sum;
 // modulo fix:
 //   12.4542
 //   1e+08
+
+// NAN BOXING:
+// 10.6409
+// 1e+08
