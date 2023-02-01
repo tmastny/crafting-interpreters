@@ -1,6 +1,6 @@
 # crafting-interpreters
 
-This is my implementation of crafting interpreters.
+This is my implementation of [Crafting Interpreters](https://craftinginterpreters.com/).
 I followed the book's implementation almost exactly.
 
 Check out the [Pull Request](https://github.com/tmastny/crafting-intrepreters/pulls)
