@@ -26,6 +26,8 @@
     "istream": "c",
     "__split_buffer": "c",
     "string": "c",
-    "vm.h": "c"
+    "vm.h": "c",
+    "__config": "c",
+    "__threading_support": "c"
   }
 }
