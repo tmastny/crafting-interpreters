@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "*.sql": "jinja-sql",
+    "stddef.h": "c",
+    "stdint.h": "c",
+    "value.h": "c"
+  }
+}
