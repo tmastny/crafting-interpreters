@@ -3,8 +3,8 @@
 This is my implementation of crafting interpreters.
 I followed the book's implementation almost exactly.
 
-Check out the Pull Request section for my attempt
-at the `clox` exercises.
+Check out the [Pull Request](https://github.com/tmastny/crafting-intrepreters/pulls)
+section for my attempt at the `clox` exercises.
 
 As I worked through the book, I occasionally found it
 useful to refer to the author's implementations,
