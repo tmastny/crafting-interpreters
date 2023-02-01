@@ -10,6 +10,10 @@ As I worked through the book, I occasionally found it
 useful to refer to the author's implementations,
 which can be found on his Github [here](https://github.com/munificent/craftinginterpreters).
 
+## Bonus
+
+[My blog post on Lox garbage collection.](https://timmastny.com/blog/garbage-collection-crafting-interpreters/)
+
 ## Exercises
 
 I worked through most exercises in the book.
