@@ -31,8 +31,8 @@ static void runtimeError(const char* format, ...) {
 
   for (int i = vm.frameCount - 1; i >= 0; i--) {
     CallFrame* frame = &vm.frames[i];
-    ObjFunction* function = FRAME_CALLABLE()->function;
-    size_t instruction = frame->ip - FRAME_CALLABLE()->function->chunk.code - 1;
+    ObjFunction* function = frame->closure->function;
+    size_t instruction = frame->ip - frame->closure->function->chunk.code - 1;
 
     fprintf(stderr, "[line %d] in ", function->chunk.lines[instruction]);
     if (function->name == NULL) {
@@ -94,7 +94,7 @@ static bool call(ObjClosure* closure, int argCount) {
   }
 
   CallFrame* frame = &vm.frames[vm.frameCount++];
-  FRAME_CALLABLE() = closure;
+  frame->closure = closure;
   frame->ip = closure->function->chunk.code;
   frame->slots = vm.stackTop - argCount - 1;
   return true;
@@ -175,13 +175,13 @@ static InterpretResult run() {
   CallFrame* frame = &vm.frames[vm.frameCount - 1];
 
 #define READ_BYTE() (*frame->ip++)
-#define FRAME_CALLABLE() (frame->isClosure ? frame->callable->closure : frame->callable)
+
 #define READ_SHORT() \
     (frame->ip += 2, \
     (uint16_t)((frame->ip[-2] << 8) | frame->ip[-1]))
 
 #define READ_CONSTANT() \
-  (FRAME_CALLABLE()->function->chunk.constants.values[READ_BYTE()])
+  (frame->closure->function->chunk.constants.values[READ_BYTE()])
 
 #define READ_STRING() AS_STRING(READ_CONSTANT())
 #define BINARY_OP(valueType, op) \
@@ -204,7 +204,7 @@ static InterpretResult run() {
       printf(" ]");
     }
     printf("\n");
-    disassembleInstruction(&FRAME_CALLABLE()->function->chunk, (int)(frame->ip - FRAME_CALLABLE()->function->chunk.code));
+    disassembleInstruction(&frame->closure->function->chunk, (int)(frame->ip - frame->closure->function->chunk.code));
 #endif
 
     uint8_t instruction;
@@ -255,12 +255,12 @@ static InterpretResult run() {
       }
       case OP_GET_UPVALUE: {
         uint8_t slot = READ_BYTE();
-        push(*FRAME_CALLABLE()->upvalues[slot]->location);
+        push(*frame->closure->upvalues[slot]->location);
         break;
       }
       case OP_SET_UPVALUE: {
         uint8_t slot = READ_BYTE();
-        *FRAME_CALLABLE()->upvalues[slot]->location = peek(0);
+        *frame->closure->upvalues[slot]->location = peek(0);
         break;
       }
       case OP_EQUAL: {
@@ -335,7 +335,7 @@ static InterpretResult run() {
           if (isLocal) {
             closure->upvalues[i] = captureUpvalue(frame->slots + index);
           } else {
-            closure->upvalues[i] = FRAME_CALLABLE()->upvalues[index];
+            closure->upvalues[i] = frame->closure->upvalues[index];
           }
         }
         break;
