@@ -31,6 +31,8 @@
     "__threading_support": "c",
     "__availability": "c",
     "__hash_table": "c",
-    "iterator": "c"
+    "iterator": "c",
+    "array": "c",
+    "new": "c"
   }
 }

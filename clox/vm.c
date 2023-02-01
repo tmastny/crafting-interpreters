@@ -183,6 +183,7 @@ static bool bindMethod(ObjClass* klass, ObjString* name) {
     return false;
   }
 
+  // binds instance to closure
   ObjBoundMethod* bound = newBoundMethod(peek(0), AS_CLOSURE(method));
   pop();
   push(OBJ_VAL(bound));
@@ -223,9 +224,15 @@ static void closeUpvalues(Value* last) {
 }
 
 static void defineMethod(ObjString* name) {
-  Value method = peek(0);
+  Value method;
   ObjClass* klass = AS_CLASS(peek(1));
-  tableSet(&klass->methods, name, method);
+  if (!tableGet(&klass->methods, name, &method)) {
+    method = peek(0);
+    tableSet(&klass->methods, name, method);
+  } else {
+    AS_CLOSURE(method)->inner = AS_CLOSURE(peek(0));
+    tableSet(&klass->methods, name, method);
+  }
   pop();
 }
 
@@ -510,6 +517,15 @@ static InterpretResult run() {
         ObjClass* subclass = AS_CLASS(peek(0));
         tableAddAll(&AS_CLASS(superclass)->methods, &subclass->methods);
         pop();
+        break;
+      }
+      case OP_INNER_INVOKE: {
+        ObjString* name = READ_STRING();
+        int argCount = READ_BYTE();
+        bindMethod(AS_INSTANCE(peek(0))->klass, name);
+        ObjBoundMethod* bound = AS_BOUND_METHOD(pop());
+        bound->method = bound->method->inner;
+        callValue(OBJ_VAL(bound), argCount);
         break;
       }
       case OP_METHOD:

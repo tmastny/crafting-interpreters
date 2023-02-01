@@ -539,6 +539,21 @@ static void super_(bool canAssign) {
   }
 }
 
+static void inner_(bool canAssign) {
+  if (currentClass == NULL) {
+    error("Can't use 'inner' outside of a class.");
+  }
+
+  // leaves 'this' instance on stack
+  namedVariable(syntheticToken("this"), false);
+
+  consume(TOKEN_LEFT_PAREN, "Must call 'inner.'");
+  uint8_t argCount = argumentList();
+
+  emitByte(OP_INNER_INVOKE);
+  emitBytes(makeConstant(OBJ_VAL(current->function->name)), argCount);
+}
+
 static void this_(bool canAssign) {
   if (currentClass == NULL) {
     error("Can't use 'this' outside of a class.");
@@ -596,6 +611,7 @@ ParseRule rules[] = {
   [TOKEN_OR]            = {NULL,     or_,    PREC_OR},
   [TOKEN_PRINT]         = {NULL,     NULL,   PREC_NONE},
   [TOKEN_RETURN]        = {NULL,     NULL,   PREC_NONE},
+  [TOKEN_INNER]         = {inner_,   NULL,   PREC_NONE},
   [TOKEN_SUPER]         = {super_,   NULL,   PREC_NONE},
   [TOKEN_THIS]          = {this_,    NULL,   PREC_NONE},
   [TOKEN_TRUE]          = {literal,  NULL,   PREC_NONE},
