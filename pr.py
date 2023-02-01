@@ -1,6 +1,7 @@
+
 import os
 import requests
-import json
+import time
 from subprocess import run, PIPE
 
 branches = run(["git", "branch"], stdout=PIPE).stdout
@@ -17,8 +18,18 @@ headers = {
 
 url = f"https://api.github.com/repos/tmastny/crafting-interpreters/pulls"
 
+response = requests.get("https://api.github.com/rate_limit", headers=headers)
+print(response.text)
+
 last = "start"
+wait = True
 for branch in branches:
+    if branch == "chapter-18":
+        wait = False
+
+    if wait:
+        continue
+
     payload = {
       "title": branch,
       "head": branch,
@@ -30,5 +41,5 @@ for branch in branches:
     if response.status_code != 201:
         print(f"Failed: {response.text}")
 
-    last = branch
-    break
+    last = branch[:branch.find("_")] if "_" in branch else branch
+    time.sleep(10)

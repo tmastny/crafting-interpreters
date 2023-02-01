@@ -31,4 +31,7 @@ to have each chapter and exercise a PR of this repo.
 This makes it easy to organize and see the changes
 I made against the chapter implementation.
 
-Check out the PR section if you are curious!
+Check out the PR section if you are curious! So the diffs make
+sense:
+* Pull request `chapter-{n}` is against `chapter-{n-1}`
+* Pull request `chapter-{n}_{x}` is against `chapter-{n}`.
