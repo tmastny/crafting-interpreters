@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "memory.h"
 #include "object.h"
@@ -18,22 +19,27 @@ static Obj* allocateObject(size_t size, ObjType type) {
   return object;
 }
 
-static ObjString* allocateString(char* chars, int length) {
-  ObjString* string = ALLOCATE_OBJ(ObjString, OBJ_STRING);
+// the names no longer make sense, but I didn't want to change the API that much.
+// `takeString` allocates ObjString to a certain length and returns the object,
+// useful for concatenation when you want an empty allocated car array.
+// `copyString` calls `takeString` and then fills in the char array.
+ObjString* takeString(int length) {
+  ObjString* string = (ObjString*)malloc(sizeof(ObjString) + sizeof(char) * (length + 1));
+  string->obj.type = OBJ_STRING;
+  string->obj.next = vm.objects;
   string->length = length;
-  string->chars = chars;
+
+  vm.objects = (Obj*)string;
   return string;
 }
 
-ObjString* takeString(char* chars, int length) {
-  return allocateString(chars, length);
-}
-
 ObjString* copyString(const char* chars, int length) {
-  char* heapChars = ALLOCATE(char, length + 1);
-  memcpy(heapChars, chars, length);
-  heapChars[length] = '\0';
-  return allocateString(heapChars, length);
+  ObjString* string = takeString(length);
+
+  memcpy(string->chars, chars, length);
+  string->chars[length] = '\0';
+
+  return string;
 }
 
 void printObject(Value value) {

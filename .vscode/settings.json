@@ -25,6 +25,8 @@
     "complex": "c",
     "istream": "c",
     "__split_buffer": "c",
-    "string": "c"
+    "string": "c",
+    "memory.h": "c",
+    "object.h": "c"
   }
 }
