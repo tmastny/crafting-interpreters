@@ -139,13 +139,12 @@ static void concatenate() {
 
 static InterpretResult run() {
   CallFrame* frame = &vm.frames[vm.frameCount - 1];
-  register uint8_t* ip = frame->ip;
 
-#define READ_BYTE() (*ip++)
+#define READ_BYTE() (*frame->ip++)
 
 #define READ_SHORT() \
-    (ip += 2, \
-    (uint16_t)((ip[-2] << 8) | ip[-1]))
+    (frame->ip += 2, \
+    (uint16_t)((frame->ip[-2] << 8) | frame->ip[-1]))
 
 #define READ_CONSTANT() \
   (frame->function->chunk.constants.values[READ_BYTE()])
@@ -171,7 +170,7 @@ static InterpretResult run() {
       printf(" ]");
     }
     printf("\n");
-    disassembleInstruction(&frame->function->chunk, (int)(ip - frame->function->chunk.code));
+    disassembleInstruction(&frame->function->chunk, (int)(frame->ip - frame->function->chunk.code));
 #endif
 
     uint8_t instruction;
@@ -261,27 +260,25 @@ static InterpretResult run() {
       }
       case OP_JUMP: {
         uint16_t offset = READ_SHORT();
-        ip += offset;
+        frame->ip += offset;
         break;
       }
       case OP_JUMP_IF_FALSE: {
         uint16_t offset = READ_SHORT();
-        if (isFalsey(peek(0))) ip += offset;
+        if (isFalsey(peek(0))) frame->ip += offset;
         break;
       }
       case OP_LOOP: {
         uint16_t offset = READ_SHORT();
-        ip -= offset;
+        frame->ip -= offset;
         break;
       }
       case OP_CALL: {
         int argCount = READ_BYTE();
-        frame->ip = ip; // save ip to current frame for return
-        if (!callValue(peek(argCount), argCount)) { // creates new frame
+        if (!callValue(peek(argCount), argCount)) {
           return INTERPRET_RUNTIME_ERROR;
         }
         frame = &vm.frames[vm.frameCount - 1];
-        ip = frame->ip;                             // set ip to new frame
         break;
       }
       case OP_RETURN: {
@@ -295,7 +292,6 @@ static InterpretResult run() {
         vm.stackTop = frame->slots;
         push(result);
         frame = &vm.frames[vm.frameCount - 1];
-        ip = frame->ip; // set ip back to old ip before call
         break;
       }
     }
