@@ -12,7 +12,7 @@ which can be found on his Github [here](https://github.com/munificent/craftingin
 I worked through most exercises in the book.
 Take a look if you if you need some ideas.
 (No promises my solutions are easy to understand
-or even correct).
+or even correct. I also got stuck on some and skipped others).
 
 ### jlox
 
