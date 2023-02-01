@@ -6,6 +6,8 @@
 #include "chunk.h"
 #include "debug.h"
 #include "vm.h"
+#include "table.h"
+#include "value.h"
 
 static void repl() {
   char line[1024];
@@ -59,6 +61,40 @@ static void runFile(const char* path) {
 
 int main(int argc, const char* argv[]) {
   initVM();
+
+  Table table;
+  initTable(&table);
+  Value d1 = NUMBER_VAL(1.1);
+  Value d2 = NUMBER_VAL(1);
+  Value t = BOOL_VAL(true);
+  Value f = BOOL_VAL(false);
+  Value n = NIV_VAL;
+
+  tableSet(&table, valueKey(d1), NUMBER_VAL(1));
+  tableSet(&table, valueKey(d2), NUMBER_VAL(2));
+  tableSet(&table, valueKey(t), NUMBER_VAL(3));
+  tableSet(&table, valueKey(f), NUMBER_VAL(4));
+  tableSet(&table, valueKey(n), NUMBER_VAL(5));
+
+  Value value;
+  tableGet(&table, valueKey(d1), &value);
+  printValue(value);
+  printf("\n");
+  tableGet(&table, valueKey(d2), &value);
+  printValue(value);
+  printf("\n");
+  tableGet(&table, valueKey(t),  &value);
+  printValue(value);
+  printf("\n");
+  tableGet(&table, valueKey(f),  &value);
+  printValue(value);
+  printf("\n");
+  tableGet(&table, valueKey(n),  &value);
+  printValue(value);
+  printf("\n");
+
+
+
 
   if (argc == 1) {
     repl();

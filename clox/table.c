@@ -35,6 +35,11 @@ static Entry* findEntry(Entry* entries, int capacity, ObjString* key) {
         // the first time we see a tombstone, save it
         if (tombstone == NULL) tombstone = entry;
       }
+
+    // this check depends on string interning, which is
+    // makes it hard to adapt to keys of other keys
+    // we really need an Hashable struct that is a union of
+    // char* and Value*
     } else if (entry->key == key) {
       return entry;
     }
