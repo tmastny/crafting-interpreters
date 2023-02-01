@@ -573,6 +573,42 @@ static void whileStatement() {
   emitByte(OP_POP);
 }
 
+static void switchStatement() {
+  consume(TOKEN_LEFT_PAREN, "Expect '(' after 'switch'.");
+  expression();
+  consume(TOKEN_RIGHT_PAREN, "Expect ')' after condition.");
+
+  consume(TOKEN_LEFT_BRACE, "Expect '{' after condition.");
+
+  int jumps[256];
+  int cases = 0;
+  while (match(TOKEN_CASE)) {
+    if (cases >= 256) error("Lox only supports 256 case statements.");
+
+    expression();
+    emitByte(OP_EQUAL_TO_TOP);
+    int notMatchCase = emitJump(OP_JUMP_IF_FALSE_WITH_POP); // jump to next case
+
+    consume(TOKEN_COLON, "Expect ':' after case expression.");
+    declaration();
+
+    jumps[cases++] = emitJump(OP_JUMP);
+    patchJump(notMatchCase);
+  }
+
+  if (match(TOKEN_DEFAULT)) {
+    consume(TOKEN_COLON, "Expect ':' after default.");
+    declaration();
+  }
+
+  for (int i = 0; i < cases; i++) {
+    patchJump(jumps[i]);
+  }
+
+  emitByte(OP_POP);
+  consume(TOKEN_RIGHT_BRACE, "Expect '}' switch statement.");
+}
+
 static void synchronize() {
   parser.panicMode = false;
 
@@ -611,6 +647,8 @@ static void statement() {
     printStatement();
   } else if (match(TOKEN_FOR)) {
     forStatement();
+  } else if (match(TOKEN_SWITCH)) {
+    switchStatement();
   } else if (match(TOKEN_IF)) {
     ifStatement();
   } else if (match(TOKEN_WHILE)) {

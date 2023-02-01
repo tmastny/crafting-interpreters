@@ -69,6 +69,8 @@ int disassembleInstruction(Chunk* chunk, int offset) {
       return constantInstruction("OP_DEFINE_GLOBAL", chunk, offset);
     case OP_EQUAL:
       return simpleInstruction("OP_EQUAL", offset);
+    case OP_EQUAL_TO_TOP:
+      return simpleInstruction("OP_EQUAL_TO_TOP", offset);
     case OP_GREATER:
       return simpleInstruction("OP_GREATER", offset);
     case OP_LESS:
@@ -91,6 +93,8 @@ int disassembleInstruction(Chunk* chunk, int offset) {
       return jumpInstruction("OP_JUMP", 1, chunk, offset);
     case OP_JUMP_IF_FALSE:
       return jumpInstruction("OP_JUMP_IF_FALSE", 1, chunk, offset);
+    case OP_JUMP_IF_FALSE_WITH_POP:
+      return jumpInstruction("OP_JUMP_IF_FALSE_WITH_POP", 1, chunk, offset);
     case OP_LOOP:
       return jumpInstruction("OP_LOOP", -1, chunk, offset);
     case OP_RETURN:
