@@ -12,13 +12,7 @@
 
 VM vm;
 
-static void runtimeError(const char* format, ...);
-
-static Value clockNative(int argCount, Value* args, bool* hadError) {
-  if (true) {
-    runtimeError("Can no longer use this function.");
-    *hadError = true;
-  }
+static Value clockNative(int argCount, Value* args) {
   return NUMBER_VAL((double)clock() / CLOCKS_PER_SEC);
 }
 
@@ -112,11 +106,7 @@ static bool callValue(Value callee, int argCount) {
         return call(AS_FUNCTION(callee), argCount);
       case OBJ_NATIVE: {
         NativeFn native = AS_NATIVE(callee);
-
-        bool hadError = false;
-        Value result = native(argCount, vm.stackTop - argCount, &hadError);
-        if (hadError) return false;
-
+        Value result = native(argCount, vm.stackTop - argCount);
         vm.stackTop -= argCount + 1;
         push(result);
         return true;
